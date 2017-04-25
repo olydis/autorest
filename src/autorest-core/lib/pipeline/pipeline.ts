@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Lazy } from "../lazy";
+import { Lazy, LazyPromise } from '../lazy';
 import { Stringify, YAMLNode } from '../ref/yaml';
 import { OutstandingTaskAwaiter } from "../outstanding-task-awaiter";
 import { AutoRestPlugin } from "./plugin-endpoint";
@@ -23,7 +23,7 @@ import { Exception } from "../exception";
 
 export type DataPromise = MultiPromise<DataHandleRead>;
 
-async function emitArtifact(config: ConfigurationView, artifactType: string, uri: string, handle: DataHandleRead): Promise<void> {
+async function emitArtifactInternal(config: ConfigurationView, artifactType: string, uri: string, handle: DataHandleRead): Promise<void> {
   config.Message({ Channel: Channel.Debug, Text: `Emitting '${artifactType}' at ${uri}` });
   if (config.IsOutputArtifactRequested(artifactType)) {
     config.GeneratedFile.Dispatch({
@@ -41,26 +41,35 @@ async function emitArtifact(config: ConfigurationView, artifactType: string, uri
   }
 }
 let emitCtr = 0;
-async function emitObjectArtifact(config: ConfigurationView, artifactType: string, uri: string, handle: DataHandleRead): Promise<void> {
-  await emitArtifact(config, artifactType, uri, handle);
+async function emitArtifact(config: ConfigurationView, artifactType: string, uri: string, handle: DataHandleRead, isObject: boolean): Promise<void> {
+  await emitArtifactInternal(config, artifactType, uri, handle);
 
-  const scope = config.DataStore.CreateScope("emitObjectArtifact");
-  const object = new Lazy<any>(() => handle.ReadObject<any>());
-  const ast = new Lazy<YAMLNode>(() => handle.ReadYamlAst());
+  if (isObject) {
+    const scope = config.DataStore.CreateScope("emitObjectArtifact");
+    const object = new Lazy<any>(() => handle.ReadObject<any>());
+    const ast = new Lazy<YAMLNode>(() => handle.ReadYamlAst());
 
-  if (config.IsOutputArtifactRequested(artifactType + ".yaml")
-    || config.IsOutputArtifactRequested(artifactType + ".yaml.map")) {
+    if (config.IsOutputArtifactRequested(artifactType + ".yaml")
+      || config.IsOutputArtifactRequested(artifactType + ".yaml.map")) {
 
-    const hw = await scope.Write(`${++emitCtr}.yaml`);
-    const h = await hw.WriteData(Stringify(object.Value), IdentitySourceMapping(handle.key, ast.Value), [handle]);
-    await emitArtifact(config, artifactType + ".yaml", uri + ".yaml", h);
+      const hw = await scope.Write(`${++emitCtr}.yaml`);
+      const h = await hw.WriteData(Stringify(object.Value), IdentitySourceMapping(handle.key, ast.Value), [handle]);
+      await emitArtifactInternal(config, artifactType + ".yaml", uri + ".yaml", h);
+    }
+    if (config.IsOutputArtifactRequested(artifactType + ".json")
+      || config.IsOutputArtifactRequested(artifactType + ".json.map")) {
+
+      const hw = await scope.Write(`${++emitCtr}.json`);
+      const h = await hw.WriteData(JSON.stringify(object.Value, null, 2), IdentitySourceMapping(handle.key, ast.Value), [handle]);
+      await emitArtifactInternal(config, artifactType + ".json", uri + ".json", h);
+    }
   }
-  if (config.IsOutputArtifactRequested(artifactType + ".json")
-    || config.IsOutputArtifactRequested(artifactType + ".json.map")) {
+}
 
-    const hw = await scope.Write(`${++emitCtr}.json`);
-    const h = await hw.WriteData(JSON.stringify(object.Value, null, 2), IdentitySourceMapping(handle.key, ast.Value), [handle]);
-    await emitArtifact(config, artifactType + ".json", uri + ".json", h);
+async function emitArtifacts(config: ConfigurationView, artifactType: string, uriResolver: (key: string) => string, scope: DataStoreViewReadonly, isObject: boolean): Promise<void> {
+  for (const key of await scope.Enum()) {
+    const file = await scope.ReadStrict(key);
+    await emitArtifact(config, artifactType, uriResolver(key), file, isObject);
   }
 }
 
@@ -106,34 +115,84 @@ function CreatePluginComposer(): PipelinePlugin {
     await (await output.Write("swagger-document")).Forward(swagger);
   };
 }
-function CreatePluginExternal(modulePath: string, ) {
+function CreatePluginExternal(host: PromiseLike<AutoRestPlugin>, pluginName: string): PipelinePlugin {
+  return async (config, input, working, output) => {
+    const plugin = await host;
+    const pluginNames = await plugin.GetPluginNames(config.CancellationToken);
+    if (pluginNames.indexOf(pluginName) === -1) {
+      throw new Error(`Plugin ${pluginName} not found.`);
+    }
 
+    const result = await plugin.Process(
+      pluginName,
+      key => config.GetEntry(key as any),
+      input,
+      output,
+      config.Message.bind(config),
+      config.CancellationToken);
+    if (!result) {
+      throw new Error(`Plugin ${pluginName} reported failure.`);
+    }
+  };
+}
+function CreateCommonmarkProcessor(): PipelinePlugin {
+  return async (config, input, working, output) => {
+    const files = await input.Enum();
+    for (const file of files) {
+      const fileIn = await input.ReadStrict(file);
+      const fileOut = await ProcessCodeModel(fileIn, working);
+      await (await output.Write("./" + file + "/_code-model-v1.yaml")).Forward(fileOut);
+    }
+  };
 }
 
 export async function RunPipeline(config: ConfigurationView, fileSystem: IFileSystem): Promise<void> {
-  const cancellationToken = config.CancellationToken;
   const processMessage = config.Message.bind(config);
   const barrier = new OutstandingTaskAwaiter();
+
+  // externals:
+  const oavPluginHost = new LazyPromise(async () => await AutoRestPlugin.FromModule(`${__dirname}/plugins/openapi-validation-tools`));
+  const autoRestDotNet = new LazyPromise(async () => await AutoRestDotNetPlugin.Get().pluginEndpoint);
 
   // TODO: enhance with custom declared plugins
   const plugins: { [name: string]: PipelinePlugin } = {
     "loader": CreatePluginLoader(),
     "transform": CreatePluginTransformer(),
     "compose": CreatePluginComposer(),
+    "model-validator": CreatePluginExternal(oavPluginHost, "model-validator"),
+    "semantic-validator": CreatePluginExternal(oavPluginHost, "semantic-validator"),
+    "azure-validator": CreatePluginExternal(autoRestDotNet, "azure-validator"),
+    "modeler": CreatePluginExternal(autoRestDotNet, "modeler"),
+
+    "csharp": CreatePluginExternal(autoRestDotNet, "csharp"),
+    "ruby": CreatePluginExternal(autoRestDotNet, "ruby"),
+    "nodejs": CreatePluginExternal(autoRestDotNet, "nodejs"),
+    "python": CreatePluginExternal(autoRestDotNet, "python"),
+    "go": CreatePluginExternal(autoRestDotNet, "go"),
+    "java": CreatePluginExternal(autoRestDotNet, "java"),
+    "azureresourceschema": CreatePluginExternal(autoRestDotNet, "azureresourceschema"),
+    "csharp-simplifier": CreatePluginExternal(autoRestDotNet, "csharp-simplifier"),
+
+    "commonmarker": CreateCommonmarkProcessor()
   };
 
+  // TODO: think about adding "number of files in scope" kind of validation in between pipeline steps
 
   // to be replaced with scheduler
   let scopeCtr = 0;
-  const RunPlugin: (pluginName: string, inputScope: DataStoreViewReadonly) => Promise<DataStoreViewReadonly> =
-    async (pluginName, inputScope) => {
+  const RunPlugin: (config: ConfigurationView, pluginName: string, inputScope: DataStoreViewReadonly) => Promise<DataStoreViewReadonly> =
+    async (config, pluginName, inputScope) => {
+      const plugin = plugins[pluginName];
+      if (!plugin) {
+        throw `Plugin '${pluginName}' not found.`;
+      }
       try {
         config.Message({ Channel: Channel.Debug, Text: `${pluginName} - START` });
 
         const scope = config.DataStore.CreateScope(`${++scopeCtr}_${pluginName}`);
         const scopeWorking = scope.CreateScope("working");
         const scopeOutput = scope.CreateScope("output");
-        await plugins[pluginName](config,
+        await plugin(config,
           inputScope,
           scopeWorking,
           scopeOutput);
@@ -146,10 +205,10 @@ export async function RunPipeline(config: ConfigurationView, fileSystem: IFileSy
       }
     };
 
-  const scopeLoadedSwaggers = await RunPlugin("loader", config.DataStore.GetReadThroughScopeFileSystem(fileSystem));
-  const scopeLoadedSwaggersTransformed = await RunPlugin("transform", scopeLoadedSwaggers);
-  const scopeComposedSwagger = await RunPlugin("compose", scopeLoadedSwaggersTransformed);
-  const scopeComposedSwaggerTransformed = await RunPlugin("transform", scopeComposedSwagger);
+  const scopeLoadedSwaggers = await RunPlugin(config, "loader", config.DataStore.GetReadThroughScopeFileSystem(fileSystem));
+  const scopeLoadedSwaggersTransformed = await RunPlugin(config, "transform", scopeLoadedSwaggers);
+  const scopeComposedSwagger = await RunPlugin(config, "compose", scopeLoadedSwaggersTransformed);
+  const scopeComposedSwaggerTransformed = await RunPlugin(config, "transform", scopeComposedSwagger);
 
   const swagger = await scopeComposedSwaggerTransformed.ReadStrict((await scopeComposedSwaggerTransformed.Enum())[0]);
 
@@ -157,81 +216,49 @@ export async function RunPipeline(config: ConfigurationView, fileSystem: IFileSy
     const relPath =
       config.GetEntry("output-file") || // TODO: overthink
       (config.GetEntry("namespace") ? config.GetEntry("namespace") : GetFilename([...config.InputFileUris][0]).replace(/\.json$/, ""));
-    await emitObjectArtifact(config, "swagger-document", ResolveUri(config.OutputFolderUri, relPath), swagger);
+    barrier.Await(emitArtifacts(config, "swagger-document", _ => ResolveUri(config.OutputFolderUri, relPath), scopeComposedSwaggerTransformed, true));
   }
 
-  // AMAR WORLD
-  if (!config.DisableValidation && (config.GetEntry("model-validator") || config.GetEntry("semantic-validator"))) {
-    const validationPlugin = await AutoRestPlugin.FromModule(`${__dirname}/plugins/openapi-validation-tools`);
-    const pluginNames = await validationPlugin.GetPluginNames(cancellationToken);
-    if (pluginNames.length != 2) {
-      throw new Error("Amar's plugin betrayed us!");
+  if (!config.DisableValidation) {
+    if (config.GetEntry("model-validator")) {
+      barrier.Await(RunPlugin(config, "model-validator", scopeComposedSwaggerTransformed));
     }
-
-    for (let pluginName of pluginNames.filter(name => config.GetEntry(name as any))) {
-      barrier.Await((async () => {
-        const scopeWork = config.DataStore.CreateScope(`amar_${pluginName}`);
-        const result = await validationPlugin.Process(
-          pluginName, _ => null,
-          scopeComposedSwaggerTransformed,
-          scopeWork.CreateScope("output"),
-          processMessage,
-          cancellationToken);
-        if (!result) {
-          throw new Error("Amar's plugin failed us!");
-        }
-      })());
+    if (config.GetEntry("semantic-validator")) {
+      barrier.Await(RunPlugin(config, "semantic-validator", scopeComposedSwaggerTransformed));
+    }
+    if (config.GetEntry("azure-validator")) {
+      barrier.Await(RunPlugin(config, "azure-validator", scopeComposedSwaggerTransformed));
     }
   }
 
   const allCodeGenerators = ["csharp", "ruby", "nodejs", "python", "go", "java", "azureresourceschema"];
   const usedCodeGenerators = allCodeGenerators.filter(cg => config.GetEntry(cg as any) !== undefined);
 
-  config.Message({ Channel: Channel.Debug, Text: `Just before autorest.dll realm.` });
-
-  // validator
-  if (config.GetEntry("azure-validator") && !config.DisableValidation) {
-    barrier.Await(AutoRestDotNetPlugin.Get().Validate(swagger, config.DataStore.CreateScope("validate"), processMessage));
-  }
-
   // code generators
   if (usedCodeGenerators.length > 0) {
-    // modeler
-    let codeModel = await AutoRestDotNetPlugin.Get().Model(swagger, config.DataStore.CreateScope("model"),
-      {
-        namespace: config.GetEntry("namespace") || ""
-      },
-      processMessage);
-
-    // GFMer
-    const codeModelGFM = await ProcessCodeModel(codeModel, config.DataStore.CreateScope("modelgfm"));
+    const scopeCodeModel = await RunPlugin(config, "modeler", scopeComposedSwaggerTransformed);
+    const scopeCodeModelCommonmark = await RunPlugin(config, "commonmarker", scopeCodeModel);
 
     let pluginCtr = 0;
     for (const usedCodeGenerator of usedCodeGenerators) {
       for (const genConfig of config.GetPluginViews(usedCodeGenerator)) {
-        const manipulator = new Manipulator(genConfig);
         const processMessage = genConfig.Message.bind(genConfig);
         const scope = genConfig.DataStore.CreateScope("plugin_" + ++pluginCtr);
 
         barrier.Await((async () => {
-          // TRANSFORM
-          const codeModelTransformed = await manipulator.Process(codeModelGFM, scope.CreateScope("transform"), "/code-model-v1.yaml");
+          const scopeCodeModelTransformed = await RunPlugin(genConfig, "transform", scopeCodeModelCommonmark);
 
-          await emitArtifact(genConfig, "code-model-v1", ResolveUri(config.OutputFolderUri, "code-model.yaml"), codeModelTransformed);
+          barrier.Await(emitArtifacts(genConfig, "code-model-v1", _ => ResolveUri(genConfig.OutputFolderUri, "code-model.yaml"), scopeCodeModelTransformed, false));
 
+          const codeModelTransformed = await scopeCodeModelTransformed.ReadStrict((await scopeCodeModelTransformed.Enum())[0]);
           let generatedFileScope = await AutoRestDotNetPlugin.Get().GenerateCode(genConfig, usedCodeGenerator, swagger, codeModelTransformed, scope.CreateScope("generate"), processMessage);
 
           // C# simplifier
           if (usedCodeGenerator === "csharp") {
-            generatedFileScope = await AutoRestDotNetPlugin.Get().SimplifyCSharpCode(generatedFileScope, scope.CreateScope("simplify"), processMessage);
+            generatedFileScope = await RunPlugin(genConfig, "csharp-simplifier", generatedFileScope);
           }
 
-          for (const fileName of await generatedFileScope.Enum()) {
-            const handle = await generatedFileScope.ReadStrict(fileName);
-            const relPath = decodeURIComponent(handle.key.split("/output/")[1]);
-            const outputFileUri = ResolveUri(genConfig.OutputFolderUri, relPath);
-            await emitArtifact(genConfig, `source-file-${usedCodeGenerator}`, outputFileUri, handle);
-          }
+          barrier.Await(emitArtifacts(genConfig, `source-file-${usedCodeGenerator}`, key => ResolveUri(genConfig.OutputFolderUri, decodeURIComponent(key.split("/output/")[1])), generatedFileScope, false));
         })());
       }
     }
