@@ -70,19 +70,14 @@ namespace Storage
         public bool? GenerateClientRequestId { get; set; }
 
         /// <summary>
-        /// Gets the ICheckNameAvailabilityOperations.
+        /// Gets the IStorageAccountsOperations.
         /// </summary>
-        public virtual ICheckNameAvailabilityOperations CheckNameAvailability { get; private set; }
+        public virtual IStorageAccountsOperations StorageAccounts { get; private set; }
 
         /// <summary>
-        /// Gets the IUsagesOperations.
+        /// Gets the IUsageOperations.
         /// </summary>
-        public virtual IUsagesOperations Usages { get; private set; }
-
-        /// <summary>
-        /// Gets the IStorageAccounts.
-        /// </summary>
-        public virtual IStorageAccounts StorageAccounts { get; private set; }
+        public virtual IUsageOperations Usage { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the StorageManagementClient class.
@@ -285,9 +280,8 @@ namespace Storage
         /// </summary>
         private void Initialize()
         {
-            CheckNameAvailability = new CheckNameAvailabilityOperations(this);
-            Usages = new UsagesOperations(this);
-            StorageAccounts = new StorageAccounts(this);
+            StorageAccounts = new StorageAccountsOperations(this);
+            Usage = new UsageOperations(this);
             BaseUri = new System.Uri("https://management.azure.com");
             ApiVersion = "2015-06-15";
             AcceptLanguage = "en-US";

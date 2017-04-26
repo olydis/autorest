@@ -69,7 +69,7 @@ async function emitArtifact(config: ConfigurationView, artifactType: string, uri
 async function emitArtifacts(config: ConfigurationView, artifactType: string, uriResolver: (key: string) => string, scope: DataStoreViewReadonly, isObject: boolean): Promise<void> {
   for (const key of await scope.Enum()) {
     const file = await scope.ReadStrict(key);
-    await emitArtifact(config, artifactType, uriResolver(key), file, isObject);
+    await emitArtifact(config, artifactType, uriResolver(file.key), file, isObject);
   }
 }
 
