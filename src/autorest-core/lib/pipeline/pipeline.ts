@@ -123,10 +123,13 @@ function CreatePluginExternal(host: PromiseLike<AutoRestPlugin>, pluginName: str
       throw new Error(`Plugin ${pluginName} not found.`);
     }
 
+    // forward input scope (relative/absolute key mess...)
+    const inputx = new QuickScope(await Promise.all((await input.Enum()).map(x => input.ReadStrict(x))));
+
     const result = await plugin.Process(
       pluginName,
       key => config.GetEntry(key as any),
-      input,
+      inputx,
       output,
       config.Message.bind(config),
       config.CancellationToken);
@@ -258,7 +261,7 @@ export async function RunPipeline(config: ConfigurationView, fileSystem: IFileSy
             generatedFileScope = await RunPlugin(genConfig, "csharp-simplifier", generatedFileScope);
           }
 
-          barrier.Await(emitArtifacts(genConfig, `source-file-${usedCodeGenerator}`, key => ResolveUri(genConfig.OutputFolderUri, decodeURIComponent(key.split("/output/")[1])), generatedFileScope, false));
+          barrier.Await(emitArtifacts(genConfig, `source-file-${usedCodeGenerator}`, key => ResolveUri(genConfig.OutputFolderUri, key.split("/output/").reverse()[0]), generatedFileScope, false));
         })());
       }
     }

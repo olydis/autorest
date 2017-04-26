@@ -33,7 +33,7 @@ public class CSharpSimplifier : NewPlugin
         var outFiles = fs.GetFiles("", "*", System.IO.SearchOption.AllDirectories);
         foreach (var outFile in outFiles)
         {
-            WriteFile(outFile, fs.ReadAllText(outFile), null);
+            WriteFile(outFile.Substring(outFile.IndexOf(":/") + 1).TrimStart('/'), fs.ReadAllText(outFile), null);
         }
 
         return true;
