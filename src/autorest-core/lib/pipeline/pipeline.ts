@@ -144,7 +144,7 @@ function CreateCommonmarkProcessor(): PipelinePlugin {
     for (const file of files) {
       const fileIn = await input.ReadStrict(file);
       const fileOut = await ProcessCodeModel(fileIn, working);
-      await (await output.Write("./" + file + "/_code-model-v1.yaml")).Forward(fileOut);
+      await (await output.Write("./" + file + "/_/code-model-v1.yaml")).Forward(fileOut);
     }
   };
 }
