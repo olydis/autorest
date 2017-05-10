@@ -90,6 +90,10 @@ modelTypes:
           already been taken or invalid and cannot be used.
         '#name': nameAvailable
         '#serializedName': nameAvailable
+        '#documentation_Original': >-
+          Gets a boolean value that indicates whether the name is available for
+          you to use. If true, the name is available. If false, the name has
+          already been taken or invalid and cannot be used.
       - $id: '9'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -129,6 +133,9 @@ modelTypes:
           Reason element is only returned if NameAvailable is false.
         '#name': reason
         '#serializedName': reason
+        '#documentation_Original': >-
+          Gets the reason that a storage account name could not be used. The
+          Reason element is only returned if NameAvailable is false.
       - $id: '11'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -154,6 +161,7 @@ modelTypes:
         '#documentation': Gets an error message explaining the Reason value in more detail.
         '#name': message
         '#serializedName': message
+        '#documentation_Original': Gets an error message explaining the Reason value in more detail.
     documentation: The CheckNameAvailability operation response.
     containsConstantProperties: false
     className: CheckNameAvailabilityResult
@@ -212,6 +220,7 @@ modelTypes:
         '#documentation': Gets or sets the account type.
         '#name': accountType
         '#serializedName': accountType
+        '#documentation_Original': Gets or sets the account type.
     containsConstantProperties: false
     className: StorageAccountPropertiesCreateParameters
     declarationName: StorageAccountPropertiesCreateParameters
@@ -246,6 +255,7 @@ modelTypes:
         '#documentation': Resource location
         '#name': location
         '#serializedName': location
+        '#documentation_Original': Resource location
       - $id: '19'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -279,6 +289,7 @@ modelTypes:
         '#documentation': Resource tags
         '#name': tags
         '#serializedName': tags
+        '#documentation_Original': Resource tags
       - $id: '22'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -334,6 +345,7 @@ modelTypes:
         '#documentation': Gets the blob endpoint.
         '#name': blob
         '#serializedName': blob
+        '#documentation_Original': Gets the blob endpoint.
       - $id: '26'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -359,6 +371,7 @@ modelTypes:
         '#documentation': Gets the queue endpoint.
         '#name': queue
         '#serializedName': queue
+        '#documentation_Original': Gets the queue endpoint.
       - $id: '28'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -384,6 +397,7 @@ modelTypes:
         '#documentation': Gets the table endpoint.
         '#name': table
         '#serializedName': table
+        '#documentation_Original': Gets the table endpoint.
       - $id: '30'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -409,6 +423,7 @@ modelTypes:
         '#documentation': Gets the file endpoint.
         '#name': file
         '#serializedName': file
+        '#documentation_Original': Gets the file endpoint.
     documentation: >-
       The URIs that are used to perform a retrieval of a public blob, queue or
       table object.
@@ -446,6 +461,7 @@ modelTypes:
         '#documentation': Gets or sets the custom domain name. Name is the CNAME source.
         '#name': name
         '#serializedName': name
+        '#documentation_Original': Gets or sets the custom domain name. Name is the CNAME source.
       - $id: '35'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -473,6 +489,9 @@ modelTypes:
           is false. This should only be set on updates
         '#name': useSubDomain
         '#serializedName': useSubDomain
+        '#documentation_Original': >-
+          Indicates whether indirect CName validation is enabled. Default value
+          is false. This should only be set on updates
     documentation: >-
       The custom domain assigned to this storage account. This can be set via
       Update.
@@ -527,6 +546,9 @@ modelTypes:
           called.
         '#name': provisioningState
         '#serializedName': provisioningState
+        '#documentation_Original': >-
+          Gets the status of the storage account at the time the operation was
+          called.
       - $id: '40'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -548,6 +570,7 @@ modelTypes:
         '#documentation': Gets the type of the storage account.
         '#name': accountType
         '#serializedName': accountType
+        '#documentation_Original': Gets the type of the storage account.
       - $id: '41'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -568,6 +591,10 @@ modelTypes:
           only return the blob endpoint.
         '#name': primaryEndpoints
         '#serializedName': primaryEndpoints
+        '#documentation_Original': >-
+          Gets the URLs that are used to perform a retrieval of a public blob,
+          queue or table object.Note that StandardZRS and PremiumLRS accounts
+          only return the blob endpoint.
       - $id: '42'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -593,6 +620,7 @@ modelTypes:
         '#documentation': Gets the location of the primary for the storage account.
         '#name': primaryLocation
         '#serializedName': primaryLocation
+        '#documentation_Original': Gets the location of the primary for the storage account.
       - $id: '44'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -632,6 +660,9 @@ modelTypes:
           account is available or unavailable.
         '#name': statusOfPrimary
         '#serializedName': statusOfPrimary
+        '#documentation_Original': >-
+          Gets the status indicating whether the primary location of the storage
+          account is available or unavailable.
       - $id: '46'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -662,6 +693,11 @@ modelTypes:
           Only available if the accountType is StandardGRS or StandardRAGRS.
         '#name': lastGeoFailoverTime
         '#serializedName': lastGeoFailoverTime
+        '#documentation_Original': >-
+          Gets the timestamp of the most recent instance of a failover to the
+          secondary location. Only the most recent timestamp is retained. This
+          element is not returned if there has never been a failover instance.
+          Only available if the accountType is StandardGRS or StandardRAGRS.
       - $id: '48'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -690,6 +726,10 @@ modelTypes:
           StandardRAGRS.
         '#name': secondaryLocation
         '#serializedName': secondaryLocation
+        '#documentation_Original': >-
+          Gets the location of the geo replicated secondary for the storage
+          account. Only available if the accountType is StandardGRS or
+          StandardRAGRS.
       - $id: '50'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -714,6 +754,10 @@ modelTypes:
           accountType is StandardGRS or StandardRAGRS.
         '#name': statusOfSecondary
         '#serializedName': statusOfSecondary
+        '#documentation_Original': >-
+          Gets the status indicating whether the secondary location of the
+          storage account is available or unavailable. Only available if the
+          accountType is StandardGRS or StandardRAGRS.
       - $id: '51'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -740,6 +784,7 @@ modelTypes:
         '#documentation': Gets the creation date and time of the storage account in UTC.
         '#name': creationTime
         '#serializedName': creationTime
+        '#documentation_Original': Gets the creation date and time of the storage account in UTC.
       - $id: '53'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -757,6 +802,7 @@ modelTypes:
         '#documentation': Gets the user assigned custom domain assigned to this storage account.
         '#name': customDomain
         '#serializedName': customDomain
+        '#documentation_Original': Gets the user assigned custom domain assigned to this storage account.
       - $id: '54'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -777,6 +823,10 @@ modelTypes:
           account. Only available if the accountType is StandardRAGRS.
         '#name': secondaryEndpoints
         '#serializedName': secondaryEndpoints
+        '#documentation_Original': >-
+          Gets the URLs that are used to perform a retrieval of a public blob,
+          queue or table object from the secondary location of the storage
+          account. Only available if the accountType is StandardRAGRS.
     containsConstantProperties: false
     className: StorageAccountProperties
     declarationName: StorageAccountProperties
@@ -834,6 +884,7 @@ modelTypes:
           '#documentation': Resource Id
           '#name': id
           '#serializedName': id
+          '#documentation_Original': Resource Id
         - $id: '60'
           $actualType: AutoRest.Core.Model.Property
           isReadOnly: true
@@ -859,6 +910,7 @@ modelTypes:
           '#documentation': Resource name
           '#name': name
           '#serializedName': name
+          '#documentation_Original': Resource name
         - $id: '62'
           $actualType: AutoRest.Core.Model.Property
           isReadOnly: true
@@ -884,6 +936,7 @@ modelTypes:
           '#documentation': Resource type
           '#name': type
           '#serializedName': type
+          '#documentation_Original': Resource type
         - $id: '64'
           $actualType: AutoRest.Core.Model.Property
           isReadOnly: false
@@ -909,6 +962,7 @@ modelTypes:
           '#documentation': Resource location
           '#name': location
           '#serializedName': location
+          '#documentation_Original': Resource location
         - $id: '66'
           $actualType: AutoRest.Core.Model.Property
           isReadOnly: false
@@ -942,6 +996,7 @@ modelTypes:
           '#documentation': Resource tags
           '#name': tags
           '#serializedName': tags
+          '#documentation_Original': Resource tags
       containsConstantProperties: false
       className: Resource
       declarationName: Resource
@@ -984,6 +1039,7 @@ modelTypes:
         '#documentation': Gets the value of key 1.
         '#name': key1
         '#serializedName': key1
+        '#documentation_Original': Gets the value of key 1.
       - $id: '72'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1009,6 +1065,7 @@ modelTypes:
         '#documentation': Gets the value of key 2.
         '#name': key2
         '#serializedName': key2
+        '#documentation_Original': Gets the value of key 2.
     documentation: The access keys for the storage account.
     containsConstantProperties: false
     className: StorageAccountKeys
@@ -1041,6 +1098,7 @@ modelTypes:
         '#documentation': Gets the list of storage accounts and their properties.
         '#name': value
         '#serializedName': value
+        '#documentation_Original': Gets the list of storage accounts and their properties.
     documentation: The list storage accounts operation response.
     containsConstantProperties: false
     className: StorageAccountListResult
@@ -1075,6 +1133,10 @@ modelTypes:
           types cannot be changed to StandardZRS or PremiumLRS.
         '#name': accountType
         '#serializedName': accountType
+        '#documentation_Original': >-
+          Gets or sets the account type. Note that StandardZRS and PremiumLRS
+          accounts cannot be changed to other account types, and other account
+          types cannot be changed to StandardZRS or PremiumLRS.
       - $id: '79'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1096,6 +1158,11 @@ modelTypes:
           custom domain name property.
         '#name': customDomain
         '#serializedName': customDomain
+        '#documentation_Original': >-
+          User domain assigned to the storage account. Name is the CNAME source.
+          Only one custom domain is supported per storage account at this time.
+          To clear the existing custom domain, use an empty string for the
+          custom domain name property.
     containsConstantProperties: false
     className: StorageAccountPropertiesUpdateParameters
     declarationName: StorageAccountPropertiesUpdateParameters
@@ -1138,6 +1205,7 @@ modelTypes:
         '#documentation': Resource tags
         '#name': tags
         '#serializedName': tags
+        '#documentation_Original': Resource tags
       - $id: '84'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1226,6 +1294,7 @@ modelTypes:
         '#documentation': Gets a string describing the resource name.
         '#name': value
         '#serializedName': value
+        '#documentation_Original': Gets a string describing the resource name.
       - $id: '91'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1251,6 +1320,7 @@ modelTypes:
         '#documentation': Gets a localized string describing the resource name.
         '#name': localizedValue
         '#serializedName': localizedValue
+        '#documentation_Original': Gets a localized string describing the resource name.
     documentation: The Usage Names.
     containsConstantProperties: false
     className: UsageName
@@ -1312,6 +1382,7 @@ modelTypes:
         '#documentation': Gets the unit of measurement.
         '#name': unit
         '#serializedName': unit
+        '#documentation_Original': Gets the unit of measurement.
       - $id: '96'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1338,6 +1409,7 @@ modelTypes:
         '#documentation': Gets the current count of the allocated resources in the subscription.
         '#name': currentValue
         '#serializedName': currentValue
+        '#documentation_Original': Gets the current count of the allocated resources in the subscription.
       - $id: '98'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1366,6 +1438,9 @@ modelTypes:
           subscription.
         '#name': limit
         '#serializedName': limit
+        '#documentation_Original': >-
+          Gets the maximum count of the resources that can be allocated in the
+          subscription.
       - $id: '100'
         $actualType: AutoRest.Core.Model.Property
         isReadOnly: false
@@ -1383,6 +1458,7 @@ modelTypes:
         '#documentation': Gets the name of the type of usage.
         '#name': name
         '#serializedName': name
+        '#documentation_Original': Gets the name of the type of usage.
     documentation: DESCRIBES STORAGE RESOURCE USAGE.
     containsConstantProperties: false
     className: Usage
@@ -1415,6 +1491,7 @@ modelTypes:
         '#documentation': Gets or sets the list Storage Resource Usages.
         '#name': value
         '#serializedName': value
+        '#documentation_Original': Gets or sets the list Storage Resource Usages.
     documentation: The List Usages operation response.
     containsConstantProperties: false
     className: UsageListResult
@@ -1466,6 +1543,10 @@ properties:
       call.
     '#name': subscriptionId
     '#serializedName': subscriptionId
+    '#documentation_Original': >-
+      Gets subscription credentials which uniquely identify Microsoft Azure
+      subscription. The subscription ID forms part of the URI for every service
+      call.
   - $id: '106'
     $actualType: AutoRest.Core.Model.Property
     isReadOnly: false
@@ -1491,6 +1572,7 @@ properties:
     '#documentation': Client Api Version.
     '#name': api-version
     '#serializedName': api-version
+    '#documentation_Original': Client Api Version.
 operations:
   - methods:
       - parameters:
@@ -1509,6 +1591,10 @@ operations:
               in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.
           - $id: '109'
             isClientProperty: true
             clientProperty:
@@ -1531,6 +1617,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '111'
             isClientProperty: true
             clientProperty:
@@ -1556,6 +1643,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: post
         requestSerializationFormat: none
@@ -1605,6 +1696,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '115'
             isClientProperty: false
             location: path
@@ -1628,9 +1720,13 @@ operations:
             '#documentation': >-
               The name of the storage account within the specified resource
               group. Storage account names must be between 3 and 24 characters
-              in length and use numbers and lower-case letters only.  
+              in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.  
           - $id: '117'
             isClientProperty: false
             location: body
@@ -1643,6 +1739,7 @@ operations:
             '#documentation': The parameters to provide for the created account.
             '#name': parameters
             '#serializedName': parameters
+            '#documentation_Original': The parameters to provide for the created account.
           - $id: '118'
             isClientProperty: true
             clientProperty:
@@ -1665,6 +1762,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '120'
             isClientProperty: true
             clientProperty:
@@ -1690,6 +1788,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: put
         requestSerializationFormat: none
@@ -1747,6 +1849,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '124'
             isClientProperty: false
             location: path
@@ -1770,9 +1873,13 @@ operations:
             '#documentation': >-
               The name of the storage account within the specified resource
               group. Storage account names must be between 3 and 24 characters
-              in length and use numbers and lower-case letters only.  
+              in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.  
           - $id: '126'
             isClientProperty: true
             clientProperty:
@@ -1795,6 +1902,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '128'
             isClientProperty: true
             clientProperty:
@@ -1820,6 +1928,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: delete
         requestSerializationFormat: none
@@ -1865,6 +1977,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '132'
             isClientProperty: false
             location: path
@@ -1888,9 +2001,13 @@ operations:
             '#documentation': >-
               The name of the storage account within the specified resource
               group. Storage account names must be between 3 and 24 characters
-              in length and use numbers and lower-case letters only.  
+              in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.  
           - $id: '134'
             isClientProperty: true
             clientProperty:
@@ -1913,6 +2030,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '136'
             isClientProperty: true
             clientProperty:
@@ -1938,6 +2056,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: get
         requestSerializationFormat: none
@@ -1988,6 +2110,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '140'
             isClientProperty: false
             location: path
@@ -2011,9 +2134,13 @@ operations:
             '#documentation': >-
               The name of the storage account within the specified resource
               group. Storage account names must be between 3 and 24 characters
-              in length and use numbers and lower-case letters only.  
+              in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.  
           - $id: '142'
             isClientProperty: false
             location: body
@@ -2025,9 +2152,12 @@ operations:
               $ref: '80'
             '#documentation': >-
               The parameters to update on the account. Note that only one
-              property can be changed at a time using this API. 
+              property can be changed at a time using this API.
             '#name': parameters
             '#serializedName': parameters
+            '#documentation_Original': >-
+              The parameters to update on the account. Note that only one
+              property can be changed at a time using this API. 
           - $id: '143'
             isClientProperty: true
             clientProperty:
@@ -2050,6 +2180,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '145'
             isClientProperty: true
             clientProperty:
@@ -2075,6 +2206,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: patch
         requestSerializationFormat: none
@@ -2135,6 +2270,7 @@ operations:
             '#documentation': The name of the resource group.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group.
           - $id: '149'
             isClientProperty: false
             location: path
@@ -2158,6 +2294,7 @@ operations:
             '#documentation': The name of the storage account.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': The name of the storage account.
           - $id: '151'
             isClientProperty: true
             clientProperty:
@@ -2180,6 +2317,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '153'
             isClientProperty: true
             clientProperty:
@@ -2205,6 +2343,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: post
         requestSerializationFormat: none
@@ -2254,6 +2396,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '157'
             isClientProperty: true
             clientProperty:
@@ -2279,6 +2422,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: get
         requestSerializationFormat: none
@@ -2332,6 +2479,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '161'
             isClientProperty: true
             clientProperty:
@@ -2354,6 +2502,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '163'
             isClientProperty: true
             clientProperty:
@@ -2379,6 +2528,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: get
         requestSerializationFormat: none
@@ -2432,6 +2585,7 @@ operations:
             '#documentation': The name of the resource group within the user's subscription.
             '#name': resourceGroupName
             '#serializedName': resourceGroupName
+            '#documentation_Original': The name of the resource group within the user's subscription.
           - $id: '167'
             isClientProperty: false
             location: path
@@ -2455,9 +2609,13 @@ operations:
             '#documentation': >-
               The name of the storage account within the specified resource
               group. Storage account names must be between 3 and 24 characters
-              in length and use numbers and lower-case letters only.  
+              in length and use numbers and lower-case letters only.
             '#name': accountName
             '#serializedName': accountName
+            '#documentation_Original': >-
+              The name of the storage account within the specified resource
+              group. Storage account names must be between 3 and 24 characters
+              in length and use numbers and lower-case letters only.  
           - $id: '169'
             isClientProperty: false
             location: body
@@ -2472,6 +2630,9 @@ operations:
               key2 for the default keys
             '#name': regenerateKey
             '#serializedName': regenerateKey
+            '#documentation_Original': >-
+              Specifies name of the key which should be regenerated. key1 or
+              key2 for the default keys
           - $id: '170'
             isClientProperty: true
             clientProperty:
@@ -2494,6 +2655,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '172'
             isClientProperty: true
             clientProperty:
@@ -2519,6 +2681,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: post
         requestSerializationFormat: none
@@ -2567,7 +2733,8 @@ operations:
                 },
                 "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only."
               },
               {
                 "$id": "109",
@@ -2593,7 +2760,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "111",
@@ -2619,7 +2787,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -2678,7 +2847,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "115",
@@ -2703,9 +2873,10 @@ operations:
                   "isConstant": false,
                   "#name": "String"
                 },
-                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  ",
+                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  "
               },
               {
                 "$id": "117",
@@ -2720,7 +2891,8 @@ operations:
                 },
                 "#documentation": "The parameters to provide for the created account.",
                 "#name": "parameters",
-                "#serializedName": "parameters"
+                "#serializedName": "parameters",
+                "#documentation_Original": "The parameters to provide for the created account."
               },
               {
                 "$id": "118",
@@ -2746,7 +2918,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "120",
@@ -2772,7 +2945,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -2837,7 +3011,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "124",
@@ -2862,9 +3037,10 @@ operations:
                   "isConstant": false,
                   "#name": "String"
                 },
-                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  ",
+                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  "
               },
               {
                 "$id": "126",
@@ -2890,7 +3066,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "128",
@@ -2916,7 +3093,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -2972,7 +3150,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "132",
@@ -2997,9 +3176,10 @@ operations:
                   "isConstant": false,
                   "#name": "String"
                 },
-                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  ",
+                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  "
               },
               {
                 "$id": "134",
@@ -3025,7 +3205,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "136",
@@ -3051,7 +3232,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3110,7 +3292,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "140",
@@ -3135,9 +3318,10 @@ operations:
                   "isConstant": false,
                   "#name": "String"
                 },
-                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  ",
+                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  "
               },
               {
                 "$id": "142",
@@ -3150,9 +3334,10 @@ operations:
                 "modelType": {
                   "$ref": "80"
                 },
-                "#documentation": "The parameters to update on the account. Note that only one property can be changed at a time using this API. ",
+                "#documentation": "The parameters to update on the account. Note that only one property can be changed at a time using this API.",
                 "#name": "parameters",
-                "#serializedName": "parameters"
+                "#serializedName": "parameters",
+                "#documentation_Original": "The parameters to update on the account. Note that only one property can be changed at a time using this API. "
               },
               {
                 "$id": "143",
@@ -3178,7 +3363,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "145",
@@ -3204,7 +3390,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3263,7 +3450,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group."
               },
               {
                 "$id": "149",
@@ -3290,7 +3478,8 @@ operations:
                 },
                 "#documentation": "The name of the storage account.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account."
               },
               {
                 "$id": "151",
@@ -3316,7 +3505,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "153",
@@ -3342,7 +3532,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3404,7 +3595,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "157",
@@ -3430,7 +3622,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3494,7 +3687,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "161",
@@ -3520,7 +3714,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "163",
@@ -3546,7 +3741,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3610,7 +3806,8 @@ operations:
                 },
                 "#documentation": "The name of the resource group within the user's subscription.",
                 "#name": "resourceGroupName",
-                "#serializedName": "resourceGroupName"
+                "#serializedName": "resourceGroupName",
+                "#documentation_Original": "The name of the resource group within the user's subscription."
               },
               {
                 "$id": "167",
@@ -3635,9 +3832,10 @@ operations:
                   "isConstant": false,
                   "#name": "String"
                 },
-                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  ",
+                "#documentation": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.",
                 "#name": "accountName",
-                "#serializedName": "accountName"
+                "#serializedName": "accountName",
+                "#documentation_Original": "The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  "
               },
               {
                 "$id": "169",
@@ -3652,7 +3850,8 @@ operations:
                 },
                 "#documentation": "Specifies name of the key which should be regenerated. key1 or key2 for the default keys",
                 "#name": "regenerateKey",
-                "#serializedName": "regenerateKey"
+                "#serializedName": "regenerateKey",
+                "#documentation_Original": "Specifies name of the key which should be regenerated. key1 or key2 for the default keys"
               },
               {
                 "$id": "170",
@@ -3678,7 +3877,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "172",
@@ -3704,7 +3904,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,
@@ -3771,6 +3972,7 @@ operations:
             '#documentation': Client Api Version.
             '#name': api-version
             '#serializedName': api-version
+            '#documentation_Original': Client Api Version.
           - $id: '176'
             isClientProperty: true
             clientProperty:
@@ -3796,6 +3998,10 @@ operations:
               every service call.
             '#name': subscriptionId
             '#serializedName': subscriptionId
+            '#documentation_Original': >-
+              Gets subscription credentials which uniquely identify Microsoft
+              Azure subscription. The subscription ID forms part of the URI for
+              every service call.
         isAbsoluteUrl: false
         httpMethod: get
         requestSerializationFormat: none
@@ -3859,7 +4065,8 @@ operations:
                 },
                 "#documentation": "Client Api Version.",
                 "#name": "api-version",
-                "#serializedName": "api-version"
+                "#serializedName": "api-version",
+                "#documentation_Original": "Client Api Version."
               },
               {
                 "$id": "176",
@@ -3885,7 +4092,8 @@ operations:
                 },
                 "#documentation": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.",
                 "#name": "subscriptionId",
-                "#serializedName": "subscriptionId"
+                "#serializedName": "subscriptionId",
+                "#documentation_Original": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
               }
             ],
             "isAbsoluteUrl": false,

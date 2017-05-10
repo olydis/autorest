@@ -34,6 +34,7 @@ export function PlainTextVersion(commonmarkAst: Node): string {
     const node = event.node;
     // console.log(node);
     switch (node.type) {
+      case "html_inline": result += node.literal; break;
       case "text": result += node.literal; break;
       case "code": result += node.literal; break;
       case "softbreak": result += " "; break;

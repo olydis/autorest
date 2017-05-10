@@ -38,7 +38,7 @@ namespace ApplicationGateway.Models
         /// <param name="backendAddressPools">Collection of backend address
         /// pools used by a load balancer</param>
         /// <param name="loadBalancingRules">Object collection representing the
-        /// load balancing rules Gets the provisioning </param>
+        /// load balancing rules Gets the provisioning</param>
         /// <param name="probes">Collection of probe objects used in the load
         /// balancer</param>
         /// <param name="inboundNatRules">Collection of inbound NAT Rules used

@@ -45,7 +45,7 @@ namespace ApplicationGateway.Models
         /// 'SourceIPProtocol'. Possible values include: 'Default', 'SourceIP',
         /// 'SourceIPProtocol'</param>
         /// <param name="backendPort">The port used for internal connections on
-        /// the endpoint. Acceptable values are between 1 and 65535. </param>
+        /// the endpoint. Acceptable values are between 1 and 65535.</param>
         /// <param name="idleTimeoutInMinutes">The timeout for the TCP idle
         /// connection. The value can be set between 4 and 30 minutes. The
         /// default value is 4 minutes. This element is only used when the

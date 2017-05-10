@@ -33,7 +33,7 @@ namespace ApplicationGateway.Models
         /// Asterix '*' can also be used to match all source IPs. Default tags
         /// such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can
         /// also be used. If this is an ingress rule, specifies where network
-        /// traffic originates from. </param>
+        /// traffic originates from.</param>
         /// <param name="destinationAddressPrefix">The destination address
         /// prefix. CIDR or source IP range. Asterix '*' can also be used to
         /// match all source IPs. Default tags such as 'VirtualNetwork',

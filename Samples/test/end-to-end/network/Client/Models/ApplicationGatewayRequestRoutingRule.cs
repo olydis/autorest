@@ -33,11 +33,11 @@ namespace ApplicationGateway.Models
         /// 'PathBasedRouting'. Possible values include: 'Basic',
         /// 'PathBasedRouting'</param>
         /// <param name="backendAddressPool">Backend address pool resource of
-        /// the application gateway. </param>
+        /// the application gateway.</param>
         /// <param name="backendHttpSettings">Frontend port resource of the
         /// application gateway.</param>
         /// <param name="httpListener">Http listener resource of the
-        /// application gateway. </param>
+        /// application gateway.</param>
         /// <param name="urlPathMap">URL path map resource of the application
         /// gateway.</param>
         /// <param name="provisioningState">Provisioning state of the request
