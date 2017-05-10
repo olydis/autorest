@@ -116,7 +116,7 @@ The following tables describe the values you need to set in the schema.
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
 |  allowClassicOperations | boolean | No | allow classic operations |
-|  circuitProvisioningState | string | No | Gets or sets CircuitProvisioningState state of the resource  |
+|  circuitProvisioningState | string | No | Gets or sets CircuitProvisioningState state of the resource |
 |  serviceProviderProvisioningState | enum | No | Gets or sets ServiceProviderProvisioningState state of the resource. - NotProvisioned, Provisioning, Provisioned, Deprovisioning |
 |  authorizations | array | No | Gets or sets list of authorizations - [ExpressRouteCircuitAuthorization object](#ExpressRouteCircuitAuthorization) |
 |  peerings | array | No | Gets or sets list of peerings - [ExpressRouteCircuitPeering object](#ExpressRouteCircuitPeering) |

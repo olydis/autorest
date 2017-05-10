@@ -92,8 +92,7 @@ The following tables describe the values you need to set in the schema.
 |  publisherName | string | No | Publisher name. |
 |  provisioningState | string | No | Provisioning state of the Api Management service. |
 |  targetProvisioningState | string | No | Target provisioning state of the Api Management service.The state that is targeted for the Api Management service by the infrastructure. |
-|  createdAtUtc | string | No | Creation UTC date of the Api Management service.The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard.
- |
+|  createdAtUtc | string | No | Creation UTC date of the Api Management service.The date conforms to the following format: yyyy-MM-ddTHH:mm:ssZ as specified by the ISO 8601 standard. |
 |  runtimeUrl | string | No | Proxy endpoint Url of the Api Management service. |
 |  portalUrl | string | No | management portal endpoint Url of the Api Management service. |
 |  managementApiUrl | string | No | management api endpoint Url of the Api Management service. |
@@ -355,8 +354,7 @@ The following tables describe the values you need to set in the schema.
 ### CertificateInformation object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  expiry | string | Yes | Expiration date of the certificate. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard.
- |
+|  expiry | string | Yes | Expiration date of the certificate. The date conforms to the following format: yyyy-MM-ddTHH:mm:ssZ as specified by the ISO 8601 standard. |
 |  thumbprint | string | Yes | Thumbprint of the certificate. |
 |  subject | string | Yes | Subject of the certificate. |
 

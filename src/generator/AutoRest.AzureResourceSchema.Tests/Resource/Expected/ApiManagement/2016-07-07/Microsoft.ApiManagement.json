@@ -975,7 +975,7 @@
         "createdAtUtc": {
           "type": "string",
           "format": "date-time",
-          "description": "Creation UTC date of the Api Management service.The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard.\n"
+          "description": "Creation UTC date of the Api Management service.The date conforms to the following format: yyyy-MM-ddTHH:mm:ssZ as specified by the ISO 8601 standard."
         },
         "runtimeUrl": {
           "type": "string",
@@ -1138,7 +1138,7 @@
         "expiry": {
           "type": "string",
           "format": "date-time",
-          "description": "Expiration date of the certificate. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard.\n"
+          "description": "Expiration date of the certificate. The date conforms to the following format: yyyy-MM-ddTHH:mm:ssZ as specified by the ISO 8601 standard."
         },
         "thumbprint": {
           "type": "string",

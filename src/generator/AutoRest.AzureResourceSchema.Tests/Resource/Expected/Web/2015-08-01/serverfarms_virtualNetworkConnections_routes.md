@@ -46,11 +46,5 @@ The following tables describe the values you need to set in the schema.
 |  name | string | No | The name of this route. This is only returned by the server and does not need to be set by the client. |
 |  startAddress | string | No | The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified. |
 |  endAddress | string | No | The ending address for this route. If the start address is specified in CIDR notation, this must be omitted. |
-|  routeType | string | No | The type of route this is:
-            DEFAULT - By default, every web app has routes to the local address ranges specified by RFC1918
-            INHERITED - Routes inherited from the real Virtual Network routes
-            STATIC - Static route set on the web app only
-
-            These values will be used for syncing a Web App's routes with those from a Virtual Network. This operation will clear all DEFAULT and INHERITED routes and replace them
-            with new INHERITED routes. |
+|  routeType | string | No | The type of route this is: DEFAULT - By default, every web app has routes to the local address ranges specified by RFC1918 INHERITED - Routes inherited from the real Virtual Network routes STATIC - Static route set on the web app only |
 

@@ -289,7 +289,7 @@ The following tables describe the values you need to set in the schema.
 |  ---- | ---- | ---- | ---- |
 |  privateIPAddress | string | No | Gets or sets the IP address of the Load Balancer.This is only specified if a specific private IP address shall be allocated from the subnet specified in subnetRef |
 |  privateIPAllocationMethod | enum | No | Gets or sets PrivateIP allocation method (Static/Dynamic). - Static or Dynamic |
-|  subnet | object | No | Gets or sets the reference of the subnet resource.A subnet from wher the load balancer gets its private frontend address  - [SubResource object](#SubResource) |
+|  subnet | object | No | Gets or sets the reference of the subnet resource.A subnet from wher the load balancer gets its private frontend address - [SubResource object](#SubResource) |
 |  publicIPAddress | object | No | Gets or sets the reference of the PublicIP resource - [SubResource object](#SubResource) |
 |  inboundNatRules | array | No | Read only.Inbound rules URIs that use this frontend IP - [SubResource object](#SubResource) |
 |  inboundNatPools | array | No | Read only.Inbound pools URIs that use this frontend IP - [SubResource object](#SubResource) |
@@ -332,7 +332,7 @@ The following tables describe the values you need to set in the schema.
 |  protocol | enum | Yes | Gets or sets the protocol of the end point. Possible values are http pr Tcp. If Tcp is specified, a received ACK is required for the probe to be successful. If http is specified,a 200 OK response from the specifies URI is required for the probe to be successful. - Http or Tcp |
 |  port | integer | Yes | Gets or sets Port for communicating the probe. Possible values range from 1 to 65535, inclusive. |
 |  intervalInSeconds | integer | No | Gets or sets the interval, in seconds, for how frequently to probe the endpoint for health status. Typically, the interval is slightly less than half the allocated timeout period (in seconds) which allows two full probes before taking the instance out of rotation. The default value is 15, the minimum value is 5 |
-|  numberOfProbes | integer | No | Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure.  |
+|  numberOfProbes | integer | No | Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure. |
 |  requestPath | string | No | Gets or sets the URI used for requesting health status from the VM. Path is required if a protocol is set to http. Otherwise, it is not allowed. There is no default value |
 |  provisioningState | string | No | Gets or sets Provisioning state of the PublicIP resource Updating/Deleting/Failed |
 

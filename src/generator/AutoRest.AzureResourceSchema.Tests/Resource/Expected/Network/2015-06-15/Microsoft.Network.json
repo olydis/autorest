@@ -968,7 +968,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backendIPConfiguration of application gateway "
+          "description": "Gets or sets backendIPConfiguration of application gateway"
         },
         "backendAddresses": {
           "oneOf": [
@@ -1083,7 +1083,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets probe resource of application gateway "
+          "description": "Gets or sets probe resource of application gateway"
         },
         "provisioningState": {
           "type": "string",
@@ -1260,7 +1260,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend IP configuration resource of application gateway "
+          "description": "Gets or sets frontend IP configuration resource of application gateway"
         },
         "frontendPort": {
           "oneOf": [
@@ -1271,7 +1271,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend port resource of application gateway "
+          "description": "Gets or sets frontend port resource of application gateway"
         },
         "protocol": {
           "oneOf": [
@@ -1290,7 +1290,7 @@
         },
         "hostName": {
           "type": "string",
-          "description": "Gets or sets the host name of http listener "
+          "description": "Gets or sets the host name of http listener"
         },
         "sslCertificate": {
           "oneOf": [
@@ -1301,7 +1301,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets ssl certificate resource of application gateway "
+          "description": "Gets or sets ssl certificate resource of application gateway"
         },
         "requireServerNameIndication": {
           "oneOf": [
@@ -1312,7 +1312,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the requireServerNameIndication of http listener "
+          "description": "Gets or sets the requireServerNameIndication of http listener"
         },
         "provisioningState": {
           "type": "string",
@@ -1361,7 +1361,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the reference of the subnet resource.A subnet from where appliation gateway gets its private address "
+          "description": "Gets or sets the reference of the subnet resource.A subnet from where appliation gateway gets its private address"
         },
         "provisioningState": {
           "type": "string",
@@ -1424,7 +1424,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backend address pool resource of URL path map "
+          "description": "Gets or sets backend address pool resource of URL path map"
         },
         "backendHttpSettings": {
           "oneOf": [
@@ -1435,7 +1435,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backend http settings resource of URL path map "
+          "description": "Gets or sets backend http settings resource of URL path map"
         },
         "provisioningState": {
           "type": "string",
@@ -1492,11 +1492,11 @@
         },
         "host": {
           "type": "string",
-          "description": "Gets or sets the host to send probe to "
+          "description": "Gets or sets the host to send probe to"
         },
         "path": {
           "type": "string",
-          "description": "Gets or sets the relative path of probe "
+          "description": "Gets or sets the relative path of probe"
         },
         "interval": {
           "oneOf": [
@@ -1507,7 +1507,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets probing interval in seconds "
+          "description": "Gets or sets probing interval in seconds"
         },
         "timeout": {
           "oneOf": [
@@ -1518,7 +1518,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets probing timeout in seconds "
+          "description": "Gets or sets probing timeout in seconds"
         },
         "unhealthyThreshold": {
           "oneOf": [
@@ -1529,7 +1529,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets probing unhealthy threshold "
+          "description": "Gets or sets probing unhealthy threshold"
         },
         "provisioningState": {
           "type": "string",
@@ -1758,7 +1758,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backend address pool resource of application gateway "
+          "description": "Gets or sets backend address pool resource of application gateway"
         },
         "backendHttpSettings": {
           "oneOf": [
@@ -1769,7 +1769,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend port resource of application gateway "
+          "description": "Gets or sets frontend port resource of application gateway"
         },
         "httpListener": {
           "oneOf": [
@@ -1780,7 +1780,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets http listener resource of application gateway "
+          "description": "Gets or sets http listener resource of application gateway"
         },
         "urlPathMap": {
           "oneOf": [
@@ -1791,7 +1791,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets url path map resource of application gateway "
+          "description": "Gets or sets url path map resource of application gateway"
         },
         "provisioningState": {
           "type": "string",
@@ -1880,15 +1880,15 @@
       "properties": {
         "data": {
           "type": "string",
-          "description": "Gets or sets the certificate data "
+          "description": "Gets or sets the certificate data"
         },
         "password": {
           "type": "string",
-          "description": "Gets or sets the certificate password "
+          "description": "Gets or sets the certificate password"
         },
         "publicCertData": {
           "type": "string",
-          "description": "Gets or sets the certificate public data "
+          "description": "Gets or sets the certificate public data"
         },
         "provisioningState": {
           "type": "string",
@@ -1937,7 +1937,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets default backend address pool resource of URL path map "
+          "description": "Gets or sets default backend address pool resource of URL path map"
         },
         "defaultBackendHttpSettings": {
           "oneOf": [
@@ -1948,7 +1948,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets default backend http settings resource of URL path map "
+          "description": "Gets or sets default backend http settings resource of URL path map"
         },
         "pathRules": {
           "oneOf": [
@@ -3701,7 +3701,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure. "
+          "description": "Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure."
         },
         "requestPath": {
           "type": "string",
@@ -3772,7 +3772,7 @@
         },
         "reverseFqdn": {
           "type": "string",
-          "description": "Gets or Sests the Reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN. "
+          "description": "Gets or Sests the Reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN."
         }
       },
       "description": "Contains FQDN of the DNS record associated with the public IP address"
@@ -4094,11 +4094,11 @@
         },
         "sourceAddressPrefix": {
           "type": "string",
-          "description": "Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from. "
+          "description": "Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from."
         },
         "destinationAddressPrefix": {
           "type": "string",
-          "description": "Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. "
+          "description": "Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used."
         },
         "access": {
           "oneOf": [

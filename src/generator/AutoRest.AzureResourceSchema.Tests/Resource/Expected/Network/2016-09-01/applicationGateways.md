@@ -564,7 +564,7 @@ The following tables describe the values you need to set in the schema.
 ### ApplicationGatewayIPConfigurationPropertiesFormat object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  subnet | object | No | Reference of the subnet resource. A subnet from where application gateway gets its private address  - [SubResource object](#SubResource) |
+|  subnet | object | No | Reference of the subnet resource. A subnet from where application gateway gets its private address - [SubResource object](#SubResource) |
 |  provisioningState | string | No | Provisioning state of the application gateway subnet resource Updating/Deleting/Failed |
 
 
@@ -572,7 +572,7 @@ The following tables describe the values you need to set in the schema.
 ### ApplicationGatewayAuthenticationCertificatePropertiesFormat object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  data | string | No | Certificate public data  |
+|  data | string | No | Certificate public data |
 |  provisioningState | string | No | Provisioning state of the authentication certificate resource Updating/Deleting/Failed |
 
 
@@ -580,9 +580,9 @@ The following tables describe the values you need to set in the schema.
 ### ApplicationGatewaySslCertificatePropertiesFormat object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  data | string | No | SSL Certificate data  |
-|  password | string | No | SSL Certificate password  |
-|  publicCertData | string | No | SSL Certificate public data  |
+|  data | string | No | SSL Certificate data |
+|  password | string | No | SSL Certificate password |
+|  publicCertData | string | No | SSL Certificate public data |
 |  provisioningState | string | No | Provisioning state of the ssl certificate resource Updating/Deleting/Failed |
 
 
@@ -610,11 +610,11 @@ The following tables describe the values you need to set in the schema.
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
 |  protocol | enum | No | Protocol. - Http or Https |
-|  host | string | No | Host to send probe to  |
-|  path | string | No | Relative path of probe  |
-|  interval | integer | No | Probing interval in seconds  |
-|  timeout | integer | No | Probing timeout in seconds  |
-|  unhealthyThreshold | integer | No | Probing unhealthy threshold  |
+|  host | string | No | Host to send probe to |
+|  path | string | No | Relative path of probe |
+|  interval | integer | No | Probing interval in seconds |
+|  timeout | integer | No | Probing timeout in seconds |
+|  unhealthyThreshold | integer | No | Probing unhealthy threshold |
 |  provisioningState | string | No | Provisioning state of the backend http settings resource Updating/Deleting/Failed |
 
 
@@ -635,7 +635,7 @@ The following tables describe the values you need to set in the schema.
 |  protocol | enum | No | Protocol. - Http or Https |
 |  cookieBasedAffinity | enum | No | Cookie affinity. - Enabled or Disabled |
 |  requestTimeout | integer | No | Request timeout |
-|  probe | object | No | Probe resource of application gateway  - [SubResource object](#SubResource) |
+|  probe | object | No | Probe resource of application gateway - [SubResource object](#SubResource) |
 |  authenticationCertificates | array | No | Array of references to Application Gateway Authentication Certificates - [SubResource object](#SubResource) |
 |  provisioningState | string | No | Provisioning state of the backend http settings resource Updating/Deleting/Failed |
 
@@ -644,12 +644,12 @@ The following tables describe the values you need to set in the schema.
 ### ApplicationGatewayHttpListenerPropertiesFormat object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  frontendIPConfiguration | object | No | Frontend IP configuration resource of application gateway  - [SubResource object](#SubResource) |
-|  frontendPort | object | No | Frontend port resource of application gateway  - [SubResource object](#SubResource) |
+|  frontendIPConfiguration | object | No | Frontend IP configuration resource of application gateway - [SubResource object](#SubResource) |
+|  frontendPort | object | No | Frontend port resource of application gateway - [SubResource object](#SubResource) |
 |  protocol | enum | No | Protocol. - Http or Https |
-|  hostName | string | No | Host name of http listener  |
-|  sslCertificate | object | No | Ssl certificate resource of application gateway  - [SubResource object](#SubResource) |
-|  requireServerNameIndication | boolean | No | RequireServerNameIndication of http listener  |
+|  hostName | string | No | Host name of http listener |
+|  sslCertificate | object | No | Ssl certificate resource of application gateway - [SubResource object](#SubResource) |
+|  requireServerNameIndication | boolean | No | RequireServerNameIndication of http listener |
 |  provisioningState | string | No | Provisioning state of the http listener resource Updating/Deleting/Failed |
 
 
@@ -657,8 +657,8 @@ The following tables describe the values you need to set in the schema.
 ### ApplicationGatewayUrlPathMapPropertiesFormat object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  defaultBackendAddressPool | object | No | Default backend address pool resource of URL path map  - [SubResource object](#SubResource) |
-|  defaultBackendHttpSettings | object | No | Default backend http settings resource of URL path map  - [SubResource object](#SubResource) |
+|  defaultBackendAddressPool | object | No | Default backend address pool resource of URL path map - [SubResource object](#SubResource) |
+|  defaultBackendHttpSettings | object | No | Default backend http settings resource of URL path map - [SubResource object](#SubResource) |
 |  pathRules | array | No | Path rule of URL path map resource - [ApplicationGatewayPathRule object](#ApplicationGatewayPathRule) |
 |  provisioningState | string | No | Provisioning state of the backend http settings resource Updating/Deleting/Failed |
 
@@ -668,10 +668,10 @@ The following tables describe the values you need to set in the schema.
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
 |  ruleType | enum | No | Rule type. - Basic or PathBasedRouting |
-|  backendAddressPool | object | No | Backend address pool resource of application gateway  - [SubResource object](#SubResource) |
-|  backendHttpSettings | object | No | Frontend port resource of application gateway  - [SubResource object](#SubResource) |
-|  httpListener | object | No | Http listener resource of application gateway  - [SubResource object](#SubResource) |
-|  urlPathMap | object | No | Url path map resource of application gateway  - [SubResource object](#SubResource) |
+|  backendAddressPool | object | No | Backend address pool resource of application gateway - [SubResource object](#SubResource) |
+|  backendHttpSettings | object | No | Frontend port resource of application gateway - [SubResource object](#SubResource) |
+|  httpListener | object | No | Http listener resource of application gateway - [SubResource object](#SubResource) |
+|  urlPathMap | object | No | Url path map resource of application gateway - [SubResource object](#SubResource) |
 |  provisioningState | string | No | Provisioning state of the request routing rule resource Updating/Deleting/Failed |
 
 
@@ -731,8 +731,8 @@ The following tables describe the values you need to set in the schema.
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
 |  paths | array | No | Path rules of URL path map - string |
-|  backendAddressPool | object | No | Backend address pool resource of URL path map  - [SubResource object](#SubResource) |
-|  backendHttpSettings | object | No | Backend http settings resource of URL path map  - [SubResource object](#SubResource) |
+|  backendAddressPool | object | No | Backend address pool resource of URL path map - [SubResource object](#SubResource) |
+|  backendHttpSettings | object | No | Backend http settings resource of URL path map - [SubResource object](#SubResource) |
 |  provisioningState | string | No | Path rule of URL path map resource Updating/Deleting/Failed |
 
 
@@ -858,7 +858,7 @@ The following tables describe the values you need to set in the schema.
 |  ---- | ---- | ---- | ---- |
 |  domainNameLabel | string | No | Gets or sets the Domain name label.The concatenation of the domain name label and the regionalized DNS zone make up the fully qualified domain name associated with the public IP address. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system. |
 |  fqdn | string | No | Gets the FQDN, Fully qualified domain name of the A DNS record associated with the public IP. This is the concatenation of the domainNameLabel and the regionalized DNS zone. |
-|  reverseFqdn | string | No | Gets or Sets the Reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN.  |
+|  reverseFqdn | string | No | Gets or Sets the Reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN. |
 
 
 <a id="NetworkSecurityGroupPropertiesFormat" />
@@ -915,8 +915,8 @@ The following tables describe the values you need to set in the schema.
 |  protocol | enum | Yes | Gets or sets Network protocol this rule applies to. Can be Tcp, Udp or All(*). - Tcp, Udp, * |
 |  sourcePortRange | string | No | Gets or sets Source Port or Range. Integer or range between 0 and 65535. Asterix '*' can also be used to match all ports. |
 |  destinationPortRange | string | No | Gets or sets Destination Port or Range. Integer or range between 0 and 65535. Asterix '*' can also be used to match all ports. |
-|  sourceAddressPrefix | string | Yes | Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from.  |
-|  destinationAddressPrefix | string | Yes | Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used.  |
+|  sourceAddressPrefix | string | Yes | Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from. |
+|  destinationAddressPrefix | string | Yes | Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. |
 |  access | enum | Yes | Gets or sets network traffic is allowed or denied. Possible values are 'Allow' and 'Deny'. - Allow or Deny |
 |  priority | integer | No | Gets or sets the priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule. |
 |  direction | enum | Yes | Gets or sets the direction of the rule.InBound or Outbound. The direction specifies if rule will be evaluated on incoming or outcoming traffic. - Inbound or Outbound |

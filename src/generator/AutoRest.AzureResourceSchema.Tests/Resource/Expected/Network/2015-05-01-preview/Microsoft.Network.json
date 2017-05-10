@@ -878,7 +878,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backendIPConfiguration of application gateway "
+          "description": "Gets or sets backendIPConfiguration of application gateway"
         },
         "backendAddresses": {
           "oneOf": [
@@ -1148,7 +1148,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend IP configuration resource of application gateway "
+          "description": "Gets or sets frontend IP configuration resource of application gateway"
         },
         "frontendPort": {
           "oneOf": [
@@ -1159,7 +1159,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend port resource of application gateway "
+          "description": "Gets or sets frontend port resource of application gateway"
         },
         "protocol": {
           "oneOf": [
@@ -1185,7 +1185,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets ssl certificate resource of application gateway "
+          "description": "Gets or sets ssl certificate resource of application gateway"
         },
         "provisioningState": {
           "type": "string",
@@ -1234,7 +1234,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the reference of the subnet resource.A subnet from where appliation gateway gets its private address "
+          "description": "Gets or sets the reference of the subnet resource.A subnet from where appliation gateway gets its private address"
         },
         "provisioningState": {
           "type": "string",
@@ -1434,7 +1434,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets backend address pool resource of application gateway "
+          "description": "Gets or sets backend address pool resource of application gateway"
         },
         "backendHttpSettings": {
           "oneOf": [
@@ -1445,7 +1445,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets frontend port resource of application gateway "
+          "description": "Gets or sets frontend port resource of application gateway"
         },
         "httpListener": {
           "oneOf": [
@@ -1456,7 +1456,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets http listener resource of application gateway "
+          "description": "Gets or sets http listener resource of application gateway"
         },
         "provisioningState": {
           "type": "string",
@@ -1545,15 +1545,15 @@
       "properties": {
         "data": {
           "type": "string",
-          "description": "Gets or sets the certificate data "
+          "description": "Gets or sets the certificate data"
         },
         "password": {
           "type": "string",
-          "description": "Gets or sets the certificate password "
+          "description": "Gets or sets the certificate password"
         },
         "publicCertData": {
           "type": "string",
-          "description": "Gets or sets the certificate public data "
+          "description": "Gets or sets the certificate public data"
         },
         "provisioningState": {
           "type": "string",
@@ -1941,7 +1941,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the reference of the subnet resource.A subnet from wher the load balancer gets its private frontend address "
+          "description": "Gets or sets the reference of the subnet resource.A subnet from wher the load balancer gets its private frontend address"
         },
         "publicIPAddress": {
           "oneOf": [
@@ -3098,7 +3098,7 @@
               "$ref": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
             }
           ],
-          "description": "Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure. "
+          "description": "Gets or sets the number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endponints to be taken out of rotation faster or slower than the typical times used in Azure."
         },
         "requestPath": {
           "type": "string",
@@ -3325,11 +3325,11 @@
         },
         "sourceAddressPrefix": {
           "type": "string",
-          "description": "Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from. "
+          "description": "Gets or sets source address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from."
         },
         "destinationAddressPrefix": {
           "type": "string",
-          "description": "Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. "
+          "description": "Gets or sets destination address prefix. CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used."
         },
         "access": {
           "oneOf": [

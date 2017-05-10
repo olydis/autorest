@@ -143,59 +143,16 @@ function _getValid(options, callback) {
 /**
  * Put complex types that are polymorphic and have recursive references
  *
- * @param {object} complexBody Please put a salmon that looks like this:
- * {
- * "fishtype": "salmon",
- * "species": "king",
- * "length": 1,
- * "age": 1,
- * "location": "alaska",
- * "iswild": true,
- * "siblings": [
- * {
- * "fishtype": "shark",
- * "species": "predator",
- * "length": 20,
- * "age": 6,
- * "siblings": [
- * {
- * "fishtype": "salmon",
- * "species": "coho",
- * "length": 2,
- * "age": 2,
- * "location": "atlantic",
- * "iswild": true,
- * "siblings": [
- * {
- * "fishtype": "shark",
- * "species": "predator",
- * "length": 20,
- * "age": 6
- * },
- * {
- * "fishtype": "sawshark",
- * "species": "dangerous",
- * "length": 10,
- * "age": 105
- * }
- * ]
- * },
- * {
- * "fishtype": "sawshark",
- * "species": "dangerous",
- * "length": 10,
- * "age": 105
- * }
- * ]
- * },
- * {
- * "fishtype": "sawshark",
- * "species": "dangerous",
- * "length": 10,
- * "age": 105
- * }
- * ]
- * }
+ * @param {object} complexBody Please put a salmon that looks like this: {
+ * "fishtype": "salmon", "species": "king", "length": 1, "age": 1, "location":
+ * "alaska", "iswild": true, "siblings": [ { "fishtype": "shark", "species":
+ * "predator", "length": 20, "age": 6, "siblings": [ { "fishtype": "salmon",
+ * "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild":
+ * true, "siblings": [ { "fishtype": "shark", "species": "predator", "length":
+ * 20, "age": 6 }, { "fishtype": "sawshark", "species": "dangerous", "length":
+ * 10, "age": 105 } ] }, { "fishtype": "sawshark", "species": "dangerous",
+ * "length": 10, "age": 105 } ] }, { "fishtype": "sawshark", "species":
+ * "dangerous", "length": 10, "age": 105 } ] }
  *
  * @param {string} [complexBody.species]
  *
@@ -425,59 +382,16 @@ class Polymorphicrecursive {
   /**
    * Put complex types that are polymorphic and have recursive references
    *
-   * @param {object} complexBody Please put a salmon that looks like this:
-   * {
-   * "fishtype": "salmon",
-   * "species": "king",
-   * "length": 1,
-   * "age": 1,
-   * "location": "alaska",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6,
-   * "siblings": [
-   * {
-   * "fishtype": "salmon",
-   * "species": "coho",
-   * "length": 2,
-   * "age": 2,
-   * "location": "atlantic",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * }
+   * @param {object} complexBody Please put a salmon that looks like this: {
+   * "fishtype": "salmon", "species": "king", "length": 1, "age": 1, "location":
+   * "alaska", "iswild": true, "siblings": [ { "fishtype": "shark", "species":
+   * "predator", "length": 20, "age": 6, "siblings": [ { "fishtype": "salmon",
+   * "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild":
+   * true, "siblings": [ { "fishtype": "shark", "species": "predator", "length":
+   * 20, "age": 6 }, { "fishtype": "sawshark", "species": "dangerous", "length":
+   * 10, "age": 105 } ] }, { "fishtype": "sawshark", "species": "dangerous",
+   * "length": 10, "age": 105 } ] }, { "fishtype": "sawshark", "species":
+   * "dangerous", "length": 10, "age": 105 } ] }
    *
    * @param {string} [complexBody.species]
    *
@@ -515,59 +429,16 @@ class Polymorphicrecursive {
   /**
    * Put complex types that are polymorphic and have recursive references
    *
-   * @param {object} complexBody Please put a salmon that looks like this:
-   * {
-   * "fishtype": "salmon",
-   * "species": "king",
-   * "length": 1,
-   * "age": 1,
-   * "location": "alaska",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6,
-   * "siblings": [
-   * {
-   * "fishtype": "salmon",
-   * "species": "coho",
-   * "length": 2,
-   * "age": 2,
-   * "location": "atlantic",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * }
+   * @param {object} complexBody Please put a salmon that looks like this: {
+   * "fishtype": "salmon", "species": "king", "length": 1, "age": 1, "location":
+   * "alaska", "iswild": true, "siblings": [ { "fishtype": "shark", "species":
+   * "predator", "length": 20, "age": 6, "siblings": [ { "fishtype": "salmon",
+   * "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild":
+   * true, "siblings": [ { "fishtype": "shark", "species": "predator", "length":
+   * 20, "age": 6 }, { "fishtype": "sawshark", "species": "dangerous", "length":
+   * 10, "age": 105 } ] }, { "fishtype": "sawshark", "species": "dangerous",
+   * "length": 10, "age": 105 } ] }, { "fishtype": "sawshark", "species":
+   * "dangerous", "length": 10, "age": 105 } ] }
    *
    * @param {string} [complexBody.species]
    *

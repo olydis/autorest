@@ -235,13 +235,10 @@ The following tables describe the values you need to set in the schema.
 |  gatewaySiteName | string | No | Name of gateway app associated with web app |
 |  clientAffinityEnabled | boolean | No | Specifies if the client affinity is enabled when load balancing http request for multiple instances of the web app |
 |  clientCertEnabled | boolean | No | Specifies if the client certificate is enabled for the web app |
-|  hostNamesDisabled | boolean | No | Specifies if the public hostnames are disabled the web app.
-            If set to true the app is only accessible via API Management process |
+|  hostNamesDisabled | boolean | No | Specifies if the public hostnames are disabled the web app. If set to true the app is only accessible via API Management process |
 |  containerSize | integer | No | Size of a function container |
-|  maxNumberOfWorkers | integer | No | Maximum number of workers
-            This only applies to function container |
-|  cloningInfo | object | No | This is only valid for web app creation. If specified, web app is cloned from
-            a source web app - [CloningInfo object](#CloningInfo) |
+|  maxNumberOfWorkers | integer | No | Maximum number of workers This only applies to function container |
+|  cloningInfo | object | No | This is only valid for web app creation. If specified, web app is cloned from a source web app - [CloningInfo object](#CloningInfo) |
 
 
 <a id="sites_slots_hybridconnection_childResource" />
@@ -352,20 +349,15 @@ The following tables describe the values you need to set in the schema.
 ### CloningInfo object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  correlationId | string | No | Correlation Id of cloning operation. This id ties multiple cloning operations
-            together to use the same snapshot |
+|  correlationId | string | No | Correlation Id of cloning operation. This id ties multiple cloning operations together to use the same snapshot |
 |  overwrite | boolean | No | Overwrite destination web app |
 |  cloneCustomHostNames | boolean | No | If true, clone custom hostnames from source web app |
 |  cloneSourceControl | boolean | No | Clone source control from source web app |
-|  sourceWebAppId | string | No | ARM resource id of the source web app. Web app resource id is of the form
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots |
+|  sourceWebAppId | string | No | ARM resource id of the source web app. Web app resource id is of the form /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots |
 |  hostingEnvironment | string | No | Hosting environment |
-|  appSettingsOverrides | object | No | Application settings overrides for cloned web app. If specified these settings will override the settings cloned
-            from source web app. If not specified, application settings from source web app are retained. |
+|  appSettingsOverrides | object | No | Application settings overrides for cloned web app. If specified these settings will override the settings cloned from source web app. If not specified, application settings from source web app are retained. |
 |  configureLoadBalancing | boolean | No | If specified configure load balancing for source and clone site |
-|  trafficManagerProfileId | string | No | ARM resource id of the traffic manager profile to use if it exists. Traffic manager resource id is of the form
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{profileName} |
+|  trafficManagerProfileId | string | No | ARM resource id of the traffic manager profile to use if it exists. Traffic manager resource id is of the form /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{profileName} |
 |  trafficManagerProfileName | string | No | Name of traffic manager profile to create. This is only needed if traffic manager profile does not already exist |
 
 
@@ -439,8 +431,7 @@ The following tables describe the values you need to set in the schema.
 |  ---- | ---- | ---- | ---- |
 |  vnetResourceId | string | No | The vnet resource id |
 |  certThumbprint | string | No | The client certificate thumbprint |
-|  certBlob | string | No | A certificate file (.cer) blob containing the public key of the private key used to authenticate a
-            Point-To-Site VPN connection. |
+|  certBlob | string | No | A certificate file (.cer) blob containing the public key of the private key used to authenticate a Point-To-Site VPN connection. |
 |  routes | array | No | The routes that this virtual network connection uses. - [VnetRoute object](#VnetRoute) |
 |  resyncRequired | boolean | No | Flag to determine if a resync is required |
 |  dnsServers | string | No | Dns servers to be used by this VNET. This should be a comma-separated list of IP addresses. |
@@ -591,8 +582,7 @@ The following tables describe the values you need to set in the schema.
 ### CorsSettings object
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  allowedOrigins | array | No | Gets or sets the list of origins that should be allowed to make cross-origin
-            calls (for example: http://example.com:12345). Use "*" to allow all. - string |
+|  allowedOrigins | array | No | Gets or sets the list of origins that should be allowed to make cross-origin calls (for example: http://example.com:12345). Use "*" to allow all. - string |
 
 
 <a id="ApiDefinitionInfo" />
@@ -617,13 +607,7 @@ The following tables describe the values you need to set in the schema.
 |  name | string | No | The name of this route. This is only returned by the server and does not need to be set by the client. |
 |  startAddress | string | No | The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified. |
 |  endAddress | string | No | The ending address for this route. If the start address is specified in CIDR notation, this must be omitted. |
-|  routeType | string | No | The type of route this is:
-            DEFAULT - By default, every web app has routes to the local address ranges specified by RFC1918
-            INHERITED - Routes inherited from the real Virtual Network routes
-            STATIC - Static route set on the web app only
-
-            These values will be used for syncing a Web App's routes with those from a Virtual Network. This operation will clear all DEFAULT and INHERITED routes and replace them
-            with new INHERITED routes. |
+|  routeType | string | No | The type of route this is: DEFAULT - By default, every web app has routes to the local address ranges specified by RFC1918 INHERITED - Routes inherited from the real Virtual Network routes STATIC - Static route set on the web app only |
 
 
 <a id="VirtualDirectory" />
@@ -640,14 +624,11 @@ The following tables describe the values you need to set in the schema.
 |  ---- | ---- | ---- | ---- |
 |  actionHostName | string | No | Hostname of a slot to which the traffic will be redirected if decided to. E.g. mysite-stage.azurewebsites.net |
 |  reroutePercentage | number | No | Percentage of the traffic which will be redirected to {Microsoft.Web.Hosting.Administration.RampUpRule.ActionHostName} |
-|  changeStep | number | No | [Optional] In auto ramp up scenario this is the step to to add/remove from {Microsoft.Web.Hosting.Administration.RampUpRule.ReroutePercentage} until it reaches
-            {Microsoft.Web.Hosting.Administration.RampUpRule.MinReroutePercentage} or {Microsoft.Web.Hosting.Administration.RampUpRule.MaxReroutePercentage}. Site metrics are checked every N minutes specificed in {Microsoft.Web.Hosting.Administration.RampUpRule.ChangeIntervalInMinutes}.
-            Custom decision algorithm can be provided in TiPCallback site extension which Url can be specified in {Microsoft.Web.Hosting.Administration.RampUpRule.ChangeDecisionCallbackUrl} |
+|  changeStep | number | No | [Optional] In auto ramp up scenario this is the step to to add/remove from {Microsoft.Web.Hosting.Administration.RampUpRule.ReroutePercentage} until it reaches {Microsoft.Web.Hosting.Administration.RampUpRule.MinReroutePercentage} or {Microsoft.Web.Hosting.Administration.RampUpRule.MaxReroutePercentage}. Site metrics are checked every N minutes specificed in {Microsoft.Web.Hosting.Administration.RampUpRule.ChangeIntervalInMinutes}. Custom decision algorithm can be provided in TiPCallback site extension which Url can be specified in {Microsoft.Web.Hosting.Administration.RampUpRule.ChangeDecisionCallbackUrl} |
 |  changeIntervalInMinutes | integer | No | [Optional] Specifies interval in mimuntes to reevaluate ReroutePercentage |
 |  minReroutePercentage | number | No | [Optional] Specifies lower boundary above which ReroutePercentage will stay. |
 |  maxReroutePercentage | number | No | [Optional] Specifies upper boundary below which ReroutePercentage will stay. |
-|  changeDecisionCallbackUrl | string | No | Custom decision algorithm can be provided in TiPCallback site extension which Url can be specified. See TiPCallback site extension for the scaffold and contracts.
-            https://www.siteextensions.net/packages/TiPCallback/ |
+|  changeDecisionCallbackUrl | string | No | Custom decision algorithm can be provided in TiPCallback site extension which Url can be specified. See TiPCallback site extension for the scaffold and contracts. https://www.siteextensions.net/packages/TiPCallback/ |
 |  name | string | No | Name of the routing rule. The recommended name would be to point to the slot which will receive the traffic in the experiment. |
 
 
@@ -667,8 +648,7 @@ The following tables describe the values you need to set in the schema.
 |  ---- | ---- | ---- | ---- |
 |  actionType | enum | Yes | ActionType - predefined action to be taken. - Recycle, LogEvent, CustomAction |
 |  customAction | object | No | CustomAction - custom action to be taken - [AutoHealCustomAction object](#AutoHealCustomAction) |
-|  minProcessExecutionTime | string | No | MinProcessExecutionTime - minimum time the process must execute
-            before taking the action |
+|  minProcessExecutionTime | string | No | MinProcessExecutionTime - minimum time the process must execute before taking the action |
 
 
 <a id="RequestsBasedTrigger" />

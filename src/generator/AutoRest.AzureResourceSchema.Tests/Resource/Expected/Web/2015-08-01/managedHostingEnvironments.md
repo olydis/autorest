@@ -163,8 +163,7 @@ The following tables describe the values you need to set in the schema.
 |  environmentStatus | string | No | Detailed message about with results of the last check of the hostingEnvironment (App Service Environment) |
 |  resourceGroup | string | No | Resource group of the hostingEnvironment (App Service Environment) |
 |  apiManagementAccountId | string | No | Api Management Account associated with this Hosting Environment |
-|  suspended | boolean | No | True/false indicating whether the hostingEnvironment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
-            (most likely because NSG blocked the incoming traffic) |
+|  suspended | boolean | No | True/false indicating whether the hostingEnvironment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available (most likely because NSG blocked the incoming traffic) |
 |  clusterSettings | array | No | Custom settings for changing the behavior of the hosting environment - [NameValuePair object](#NameValuePair) |
 
 
@@ -212,12 +211,8 @@ The following tables describe the values you need to set in the schema.
 |  unit | string | No | Name of the unit |
 |  computeMode | enum | No | Shared/Dedicated workers. - Shared, Dedicated, Dynamic |
 |  workerSize | enum | No | Size of the machines. - Default, Small, Medium, Large |
-|  workerSizeId | integer | No | Size Id of machines:
-            0 - Small
-            1 - Medium
-            2 - Large |
-|  excludeFromCapacityAllocation | boolean | No | If true it includes basic sites
-            Basic sites are not used for capacity allocation. |
+|  workerSizeId | integer | No | Size Id of machines: 0 - Small 1 - Medium 2 - Large |
+|  excludeFromCapacityAllocation | boolean | No | If true it includes basic sites Basic sites are not used for capacity allocation. |
 |  isApplicableForAllComputeModes | boolean | No | Is capacity applicable for all sites? |
 |  siteMode | string | No | Shared or Dedicated |
 

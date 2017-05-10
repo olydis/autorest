@@ -62,8 +62,7 @@ The following tables describe the values you need to set in the schema.
 |  adminSiteName | string | No | App Service Plan administration site |
 |  hostingEnvironmentProfile | object | No | Specification for the hosting environment (App Service Environment) to use for the App Service Plan - [HostingEnvironmentProfile object](#HostingEnvironmentProfile) |
 |  maximumNumberOfWorkers | integer | No | Maximum number of instances that can be assigned to this App Service Plan |
-|  perSiteScaling | boolean | No | If True apps assigned to this App Service Plan can be scaled independently
-            If False apps assigned to this App Service Plan will scale to all instances of the plan |
+|  perSiteScaling | boolean | No | If True apps assigned to this App Service Plan can be scaled independently If False apps assigned to this App Service Plan will scale to all instances of the plan |
 
 
 <a id="SkuDescription" />
