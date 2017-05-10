@@ -26,8 +26,7 @@ namespace Swagger.Models
         /// <summary>
         /// Initializes a new instance of the ListQueryKeysResult class.
         /// </summary>
-        /// <param name="value">&gt; Again, shorthand for `@.properties.value`
-        ///
+        /// <param name="value">Again, shorthand for @.properties.value
         /// The query keys for the Azure Search service.</param>
         public ListQueryKeysResult(IList<QueryKey> value = default(IList<QueryKey>))
         {
@@ -41,8 +40,7 @@ namespace Swagger.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets &amp;gt; Again, shorthand for `@.properties.value`
-        ///
+        /// Gets again, shorthand for @.properties.value
         /// The query keys for the Azure Search service.
         /// </summary>
         [JsonProperty(PropertyName = "value")]

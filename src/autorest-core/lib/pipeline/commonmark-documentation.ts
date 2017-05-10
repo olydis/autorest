@@ -23,7 +23,7 @@ import { DataHandleRead, DataHandleWrite, DataStoreView } from "../data-store/da
 
 function IsDocumentationField(path: JsonPath) {
   const last = path[path.length - 1];
-  return last === "Description" || last === "Summary";
+  return last === "#documentation";
 }
 
 export function PlainTextVersion(commonmarkAst: Node): string {
@@ -61,7 +61,7 @@ export async function ProcessCodeModel(codeModel: DataHandleRead, scope: DataSto
       const nodeOriginal = CloneAst(node);
       const key = nodeOriginal.key.value;
       const origKey = key + "_Original";
-      nodeOriginal.key.value = origKey
+      nodeOriginal.key.value = origKey;
       parent.mappings.push(nodeOriginal);
       mapping.push({
         name: "original gfm",
