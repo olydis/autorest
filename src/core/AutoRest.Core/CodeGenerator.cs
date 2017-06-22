@@ -78,7 +78,7 @@ namespace AutoRest.Core
         /// <param name="fileName"></param>
         /// <param name="skipEmptyLines"></param>
         /// <returns></returns>
-        public async Task Write(string template, string fileName, bool skipEmptyLines)
+        public async Task Write(string template, string fileName, bool skipEmptyLines = false)
         {
             if (Settings.Instance.OutputFileName != null)
             {

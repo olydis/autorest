@@ -120,6 +120,37 @@ namespace AutoRest.Core.Utilities
                 }
             }
         }
+        public static Tuple<string, string> WordWrapOnce(this string text, int width)
+        {
+            Debug.Assert(text != null, "text should not be null.");
+
+            var firstLineBreak = text.IndexOfAny(new [] { '\r', '\n' });
+            if (firstLineBreak != -1 && firstLineBreak <= width)
+            {
+                var remainder = text.Substring(firstLineBreak);
+                var newLineHead = remainder.IndexOf('\n');
+                return Tuple.Create(text.Substring(0, firstLineBreak), remainder.Substring(0 <= newLineHead && newLineHead <= 1 ? newLineHead + 1 : 1));
+            }
+
+            // determine potential wrapping points
+            var whitespacePositions = Enumerable
+                .Range(0, text.Length)
+                .Where(i => char.IsWhiteSpace(text[i]))
+                .Concat(new [] { text.Length })
+                .Cast<int?>();
+            var preWidthWrapAt = whitespacePositions.LastOrDefault(i => i <= width);
+            var postWidthWrapAt = whitespacePositions.FirstOrDefault(i => i > width);
+
+            // choose preferred wrapping point
+            var wrapAt = preWidthWrapAt ?? postWidthWrapAt ?? text.Length;
+
+            if (wrapAt == text.Length)
+            {
+                return Tuple.Create<string, string>(text, null);
+            }
+
+            return Tuple.Create(text.Substring(0, wrapAt), text.Substring(wrapAt + 1));
+        }
 
         public static bool IsMarked<T>(this PropertyInfo property)
             => property.GetCustomAttributes(typeof(T), true).Any();

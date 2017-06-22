@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,19 +14,17 @@ namespace AutoRest.Core.Utilities
     /// </summary>
     public class IndentedStringBuilder
     {
+        protected const int AutoWrapColumn = 79;
         public const string FourSpaces = "    ";
         public const string TwoSpaces = "  ";
-        private int _indentationCount;
+        private readonly Stack<string> _totalIndentation;
         private readonly StringBuilder _builder;
-        private readonly string _indentation;
+        private readonly string _indentationStep;
 
         /// <summary>
         /// Gets current indentation.
         /// </summary>
-        private string CurrentIndentation
-        {
-            get { return string.Concat(Enumerable.Repeat(_indentation, _indentationCount)); }
-        }
+        private string CurrentIndentation => string.Concat(_totalIndentation.Reverse());
 
         /// <summary>
         /// Initializes a new instance of IndentedStringBuilder.
@@ -32,15 +32,15 @@ namespace AutoRest.Core.Utilities
         /// <param name="indentation">String to use as an indentation.</param>
         public IndentedStringBuilder(string indentation)
         {
-            _indentation = indentation;
+            _indentationStep = indentation;
             _builder = new StringBuilder();
-            _indentationCount = 0;
+            _totalIndentation = new Stack<string>();
         }
 
         /// <summary>
         /// Initializes a new instance of IndentedStringBuilder with Fourspaces as indentation.
         /// </summary>
-        public IndentedStringBuilder():this(FourSpaces)
+        public IndentedStringBuilder() : this(FourSpaces)
         {
         }
 
@@ -48,9 +48,9 @@ namespace AutoRest.Core.Utilities
         /// Adds a level of indentation.
         /// </summary>
         /// <returns>Current instance of IndentedStringBuilder.</returns>
-        public IndentedStringBuilder Indent()
+        public IndentedStringBuilder Indent(string indentation = null)
         {
-            _indentationCount++;
+            _totalIndentation.Push(indentation ?? _indentationStep);
             return this;
         }
 
@@ -60,10 +60,9 @@ namespace AutoRest.Core.Utilities
         /// <returns>Current instance of IndentedStringBuilder.</returns>
         public IndentedStringBuilder Outdent()
         {
-            _indentationCount--;
-            if (_indentationCount < 0)
-            {
-                _indentationCount = 0;
+            if (_totalIndentation.Count > 0)
+            { 
+                _totalIndentation.Pop();
             }
             return this;
         }
@@ -76,6 +75,55 @@ namespace AutoRest.Core.Utilities
         public IndentedStringBuilder Append(string text)
         {
             _builder.Append(IndentMultilineString(text, CurrentIndentation));
+            return this;
+        }
+
+        int _currentLineLength = 0;
+
+        public IndentedStringBuilder Write(string text)
+        {
+            var indent = CurrentIndentation;
+            var lines = text.Split(new []{ "\r\n",  "\n" }, StringSplitOptions.None);
+            for (var i = 0; i < lines.Length; ++i)
+            {
+                if (i > 0)
+                {
+                    WriteLineBreak();
+                }
+                var line = lines[i];
+                if (_currentLineLength == 0)
+                {
+                    Append(indent);
+                    _currentLineLength += indent.Length;
+                }
+                Append(line);
+                _currentLineLength += line.Length;
+            }
+            return this;
+        }
+
+        public IndentedStringBuilder WriteLineBreak()
+        {
+            _currentLineLength = 0;
+            return AppendLine();
+        }
+
+        public IndentedStringBuilder EndLine()
+        {
+            return _currentLineLength != 0
+                ? WriteLineBreak()
+                : this;
+        }
+
+        public IndentedStringBuilder WriteWrapped(string text)
+        {
+            var state = Tuple.Create("", text);
+            while (state.Item2 != null)
+            {
+                state = state.Item2.WordWrapOnce(AutoWrapColumn - (_currentLineLength == 0 ? CurrentIndentation.Length : _currentLineLength));
+                Write(state.Item1);
+                WriteLineBreak();
+            }
             return this;
         }
 

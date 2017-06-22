@@ -82,9 +82,8 @@ namespace AutoRest.CSharp.Azure.Fluent
             // Enums
             foreach (EnumTypeCs enumType in codeModel.EnumTypes)
             {
-                var enumTemplate = new EnumTemplate { Model = enumType };
-                await Write(enumTemplate, Path.Combine(Settings.Instance.ModelsName,
-                    $"{enumTemplate.Model.Name}{ImplementationFileExtension}"));
+                var code = AutoRest.CSharp.Code.Enum.Generate(enumType);
+                await Write(code, Path.Combine(Settings.Instance.ModelsName, $"{enumType.Name}{ImplementationFileExtension}"));
             }
 
             // Page class
