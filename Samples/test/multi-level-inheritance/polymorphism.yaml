@@ -1,0 +1,100 @@
+---
+swagger: '2.0'
+info:
+  title: Cowbell Provider
+  version: '1.0'
+host: localhost
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  "/Cowbell/Transform":
+    post:
+      operationId: Cowbell_Transform
+      parameters:
+      - name: cowbell
+        in: body
+        schema:
+          $ref: "#/definitions/Cowbell"
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/Cowbell"
+  "/Cowbell/NormalizeName":
+    post:
+      operationId: Cowbell_NormalizeName
+      parameters:
+      - name: cowbell
+        in: body
+        schema:
+          $ref: "#/definitions/NamedCowbell"
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/NamedCowbell"
+
+# hierarchy:
+# - Cowbell
+#   - ColorfulCowbell
+#   - NamedCowbell
+#     - HollywoodCowbell
+#     - PoliticalCowbell
+#       - PresidentialCowbell
+
+definitions:
+  Cowbell:
+    required:
+    - type
+    discriminator: type
+    properties:
+      type:
+        type: string
+      pitch:
+        type: number
+      loudness:
+        type: number
+  ColorfulCowbell:
+    allof:
+      - $ref: "#/definitions/Cowbell"
+    properties:
+      colors:
+        type: array
+        items:
+          type: string
+  NamedCowbell:
+    allof:
+      - $ref: "#/definitions/Cowbell"
+    properties:
+      name:
+        type: string
+  HollywoodCowbell:
+    allof:
+      - $ref: "#/definitions/NamedCowbell"
+    properties:
+      artisticName:
+        type: string
+      movies:
+        type: array
+        items:
+          type: string
+  PoliticalCowbell:
+    allof:
+      - $ref: "#/definitions/NamedCowbell"
+    properties:
+      party:
+        type: string
+      agenda:
+        type: array
+        items:
+          type: string
+  PresidentialCowbell:
+    allof:
+      - $ref: "#/definitions/PoliticalCowbell"
+    properties:
+      presidencies:
+        type: array
+        items:
+          type: string
