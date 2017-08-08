@@ -1,4 +1,12 @@
-    - /Samples/test/error-behavior/openapi-yaml-bad-file-reference/tiny.yaml:23:10
 ERROR: Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found
 FATAL: Error: Error occurred. Exiting.
 FATAL: swagger-document/loader - FAILED
+WARNING: Could not find the exact path ["paths","/cowbell","post","parameters",0,"schema","$ref"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths","/cowbell","post","parameters",0,"schema"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths","/cowbell","post","parameters",0] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths","/cowbell","post","parameters"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths","/cowbell","post"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths","/cowbell"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path ["paths"] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Could not find the exact path [] for "Referenced file '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/i-do-not-exist.json' not found"
+WARNING: Failed to blame {"path":[]} in '"/Samples/test/error-behavior/openapi-yaml-bad-file-reference/tiny.yaml"' (Error: Object '/Samples/test/error-behavior/openapi-yaml-bad-file-reference/tiny.yaml' does not exist.)
