@@ -4,6 +4,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+/// <reference path="./help.d.ts" />
+
 // enable static modules for autorest-core
 if ((<any>global).StaticVolumeSet) {
   (<any>global).StaticVolumeSet.addFileSystem(`${__dirname}/static_modules.fs`)
