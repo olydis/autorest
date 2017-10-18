@@ -18,6 +18,8 @@ import { DataHandle, DataSink, DataSource, QuickDataSource } from '../data-store
 import { IFileSystem } from "../file-system";
 import { EmitArtifacts } from "./artifact-emitter";
 import { ComposeSwaggers, LoadLiterateSwaggerOverrides, LoadLiterateSwaggers } from './swagger-loader';
+import { Help } from '../../help';
+import { GetPlugin_HelpAutoRest, GetPlugin_HelpAutoRestCore } from "./help";
 
 export type PipelinePlugin = (config: ConfigurationView, input: DataSource, sink: DataSink) => Promise<DataSource>;
 interface PipelineNode {
@@ -27,10 +29,10 @@ interface PipelineNode {
   inputs: string[];
 };
 
-function CreatePluginIdentity(): PipelinePlugin {
+function GetPlugin_Identity(): PipelinePlugin {
   return async (config, input) => input;
 }
-function CreatePluginLoader(): PipelinePlugin {
+function GetPlugin_Loader(): PipelinePlugin {
   return async (config, input, sink) => {
     let inputs = config.InputFileUris;
     const swaggers = await LoadLiterateSwaggers(
@@ -44,7 +46,7 @@ function CreatePluginLoader(): PipelinePlugin {
     return new QuickDataSource(result);
   };
 }
-function CreatePluginMdOverrideLoader(): PipelinePlugin {
+function GetPlugin_MdOverrideLoader(): PipelinePlugin {
   return async (config, input, sink) => {
     let inputs = config.InputFileUris;
     const swaggers = await LoadLiterateSwaggerOverrides(
@@ -59,7 +61,7 @@ function CreatePluginMdOverrideLoader(): PipelinePlugin {
   };
 }
 
-function CreatePluginTransformer(): PipelinePlugin {
+function GetPlugin_Transformer(): PipelinePlugin {
   return async (config, input, sink) => {
     const isObject = config.GetEntry("is-object" as any) === false ? false : true;
     const manipulator = new Manipulator(config);
@@ -73,7 +75,7 @@ function CreatePluginTransformer(): PipelinePlugin {
     return new QuickDataSource(result);
   };
 }
-function CreatePluginTransformerImmediate(): PipelinePlugin {
+function GetPlugin_TransformerImmediate(): PipelinePlugin {
   return async (config, input, sink) => {
     const isObject = config.GetEntry("is-object" as any) === false ? false : true;
     const files = await input.Enum(); // first all the immediate-configs, then a single swagger-document
@@ -85,7 +87,7 @@ function CreatePluginTransformerImmediate(): PipelinePlugin {
     return new QuickDataSource([await sink.Forward("swagger-document", fileOut)]);
   };
 }
-function CreatePluginComposer(): PipelinePlugin {
+function GetPlugin_Composer(): PipelinePlugin {
   return async (config, input, sink) => {
     const swaggers = await Promise.all((await input.Enum()).map(x => input.ReadStrict(x)));
     const overrideInfo = config.GetEntry("override-info");
@@ -95,7 +97,7 @@ function CreatePluginComposer(): PipelinePlugin {
     return new QuickDataSource([await sink.Forward("composed", swagger)]);
   };
 }
-function CreatePluginExternal(host: AutoRestExtension, pluginName: string): PipelinePlugin {
+function GetPlugin_External(host: AutoRestExtension, pluginName: string): PipelinePlugin {
   return async (config, input, sink) => {
     const plugin = await host;
     const pluginNames = await plugin.GetPluginNames(config.CancellationToken);
@@ -118,7 +120,7 @@ function CreatePluginExternal(host: AutoRestExtension, pluginName: string): Pipe
     return new QuickDataSource(results);
   };
 }
-function CreateCommonmarkProcessor(): PipelinePlugin {
+function GetPlugin_CommonmarkProcessor(): PipelinePlugin {
   return async (config, input, sink) => {
     const files = await input.Enum();
     const results: DataHandle[] = [];
@@ -131,7 +133,7 @@ function CreateCommonmarkProcessor(): PipelinePlugin {
     return new QuickDataSource(results);
   };
 }
-function CreateArtifactEmitter(inputOverride?: () => Promise<DataSource>): PipelinePlugin {
+function GetPlugin_ArtifactEmitter(inputOverride?: () => Promise<DataSource>): PipelinePlugin {
   return async (config, input, sink) => {
     if (inputOverride) {
       input = await inputOverride();
@@ -258,19 +260,21 @@ function BuildPipeline(config: ConfigurationView): { pipeline: { [name: string]:
 export async function RunPipeline(configView: ConfigurationView, fileSystem: IFileSystem): Promise<void> {
   // built-in plugins
   const plugins: { [name: string]: PipelinePlugin } = {
-    "identity": CreatePluginIdentity(),
-    "loader": CreatePluginLoader(),
-    "md-override-loader": CreatePluginMdOverrideLoader(),
-    "transform": CreatePluginTransformer(),
-    "transform-immediate": CreatePluginTransformerImmediate(),
-    "compose": CreatePluginComposer(),
+    "help-autorest": GetPlugin_HelpAutoRest(),
+    "help-autorest-core": GetPlugin_HelpAutoRestCore(),
+    "identity": GetPlugin_Identity(),
+    "loader": GetPlugin_Loader(),
+    "md-override-loader": GetPlugin_MdOverrideLoader(),
+    "transform": GetPlugin_Transformer(),
+    "transform-immediate": GetPlugin_TransformerImmediate(),
+    "compose": GetPlugin_Composer(),
     // TODO: replace with OAV again
-    "semantic-validator": CreatePluginIdentity(),
+    "semantic-validator": GetPlugin_Identity(),
 
-    "commonmarker": CreateCommonmarkProcessor(),
-    "emitter": CreateArtifactEmitter(),
-    "pipeline-emitter": CreateArtifactEmitter(async () => new QuickDataSource([await configView.DataStore.getDataSink().WriteObject("pipeline", pipeline.pipeline)])),
-    "configuration-emitter": CreateArtifactEmitter(async () => new QuickDataSource([await configView.DataStore.getDataSink().WriteObject("configuration", configView.Raw)]))
+    "commonmarker": GetPlugin_CommonmarkProcessor(),
+    "emitter": GetPlugin_ArtifactEmitter(),
+    "pipeline-emitter": GetPlugin_ArtifactEmitter(async () => new QuickDataSource([await configView.DataStore.getDataSink().WriteObject("pipeline", pipeline.pipeline)])),
+    "configuration-emitter": GetPlugin_ArtifactEmitter(async () => new QuickDataSource([await configView.DataStore.getDataSink().WriteObject("configuration", configView.Raw)]))
   };
 
   // dynamically loaded, auto-discovered plugins
@@ -278,7 +282,7 @@ export async function RunPipeline(configView: ConfigurationView, fileSystem: IFi
   for (const useExtension of configView.UseExtensions) {
     const extension = await GetExtension(useExtension.fullyQualified);
     for (const plugin of await extension.GetPluginNames(configView.CancellationToken)) {
-      plugins[plugin] = CreatePluginExternal(extension, plugin);
+      plugins[plugin] = GetPlugin_External(extension, plugin);
       __extensionExtension[plugin] = extension;
     }
   }
