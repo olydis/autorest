@@ -44,6 +44,8 @@ output-artifact:
   - code-model-v1.yaml
   - pipeline.yaml
   - configuration.yaml
+  - null
+  - help
   - source-file-csharp
   - source-file-jsonrpcclient
 require: []
@@ -73,12 +75,20 @@ pipeline:
     scope: scope-configuration-emitter
     suffixes:
       - ''
+  help/help-autorest:
+    scope: help
+    suffixes: []
+  help/help-autorest-core:
+    scope: help
+    suffixes: []
   swagger-document-override/md-override-loader:
     output-artifact: immediate-config
+    scope: perform-load
     suffixes:
       - ''
   swagger-document/loader:
     output-artifact: swagger-document
+    scope: perform-load
     suffixes:
       - ''
   swagger-document/individual/transform:
@@ -219,6 +229,7 @@ scope-configuration-emitter:
   is-object: true
   output-uri-expr: |
     "configuration"
+perform-load: true
 scope-swagger-document/emitter:
   input-artifact: swagger-document
   is-object: true

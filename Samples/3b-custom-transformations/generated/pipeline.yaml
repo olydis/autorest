@@ -12,53 +12,62 @@ configuration-emitter:
 swagger-document-override/md-override-loader:
   pluginName: md-override-loader
   outputArtifact: immediate-config
-  configScope: []
+  configScope:
+    - perform-load
   inputs: []
 swagger-document/loader:
   pluginName: loader
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs: []
 swagger-document/individual/transform:
   pluginName: transform
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document/loader
 swagger-document/individual/identity:
   pluginName: identity
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document/individual/transform
 swagger-document/compose:
   pluginName: compose
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document/individual/identity
 swagger-document/transform-immediate:
   pluginName: transform-immediate
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document-override/md-override-loader
     - swagger-document/compose
 swagger-document/transform:
   pluginName: transform
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document/transform-immediate
 swagger-document/identity:
   pluginName: identity
   outputArtifact: swagger-document
-  configScope: []
+  configScope:
+    - perform-load
   inputs:
     - swagger-document/transform
 swagger-document/emitter:
   pluginName: emitter
   configScope:
+    - perform-load
     - scope-swagger-document/emitter
   inputs:
     - swagger-document/transform
@@ -66,6 +75,7 @@ csharp/modeler:
   pluginName: modeler
   outputArtifact: code-model-v1
   configScope:
+    - perform-load
     - csharp
   inputs:
     - swagger-document/identity
@@ -73,6 +83,7 @@ csharp/commonmarker:
   pluginName: commonmarker
   outputArtifact: code-model-v1
   configScope:
+    - perform-load
     - csharp
   inputs:
     - csharp/modeler
@@ -80,12 +91,14 @@ csharp/cm/transform:
   pluginName: transform
   outputArtifact: code-model-v1
   configScope:
+    - perform-load
     - csharp
   inputs:
     - csharp/commonmarker
 csharp/cm/emitter:
   pluginName: emitter
   configScope:
+    - perform-load
     - csharp
     - scope-cm/emitter
   inputs:
@@ -94,6 +107,7 @@ csharp/generate:
   pluginName: csharp
   outputArtifact: source-file-csharp
   configScope:
+    - perform-load
     - csharp
   inputs:
     - csharp/cm/transform
@@ -101,6 +115,7 @@ csharp/simplifier:
   pluginName: csharp-simplifier
   outputArtifact: source-file-csharp
   configScope:
+    - perform-load
     - csharp
   inputs:
     - csharp/generate
@@ -108,6 +123,7 @@ csharp/transform:
   pluginName: transform
   outputArtifact: source-file-csharp
   configScope:
+    - perform-load
     - csharp
     - scope-transform-string
   inputs:
@@ -115,6 +131,7 @@ csharp/transform:
 csharp/emitter:
   pluginName: emitter
   configScope:
+    - perform-load
     - csharp
     - scope-transform-string
     - scope-csharp/emitter
@@ -123,24 +140,28 @@ csharp/emitter:
 swagger-document/classic-openapi-validator:
   pluginName: classic-openapi-validator
   configScope:
+    - perform-load
     - azure-validator-composed
   inputs:
     - swagger-document/identity
 swagger-document/individual/classic-openapi-validator:
   pluginName: classic-openapi-validator
   configScope:
+    - perform-load
     - azure-validator-individual
   inputs:
     - swagger-document/individual/identity
 swagger-document/openapi-validator:
   pluginName: openapi-validator
   configScope:
+    - perform-load
     - azure-validator-composed
   inputs:
     - swagger-document/identity
 swagger-document/individual/openapi-validator:
   pluginName: openapi-validator
   configScope:
+    - perform-load
     - azure-validator-individual
   inputs:
     - swagger-document/individual/identity
