@@ -1,34 +1,15 @@
 #!/usr/bin/env node
+// load static module: ${__dirname }/static_modules.fs
+require('./static-loader.js').load(`${__dirname}/static_modules.fs`)
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-// enable static modules for autorest-core
-if ((<any>global).StaticVolumeSet) {
-  (<any>global).StaticVolumeSet.addFileSystem(`${__dirname}/static_modules.fs`)
-}
-
-// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd
-if (!String.prototype.padEnd) {
-  String.prototype.padEnd = function padEnd(targetLength, padString) {
-    targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
-    padString = String(padString || ' ');
-    if (this.length > targetLength) {
-      return String(this);
-    }
-    else {
-      targetLength = targetLength - this.length;
-      if (targetLength > padString.length) {
-        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
-      }
-      return String(this) + padString.slice(0, targetLength);
-    }
-  };
-}
-
 require('events').EventEmitter.defaultMaxListeners = 100;
+process.env['ELECTRON_RUN_AS_NODE'] = "1";
+delete process.env['ELECTRON_NO_ATTACH_CONSOLE'];
 
 // start of autorest-ng
 // the console app starts for real here.
