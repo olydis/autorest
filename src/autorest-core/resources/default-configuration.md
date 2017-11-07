@@ -183,6 +183,28 @@ scope-cm/emitter:
     "code-model-v1"
 ```
 
+#### Modeler Only
+
+``` yaml $(standalone-modeler)
+use-extension:
+  "@microsoft.azure/autorest.modeler": "2.1.26"
+
+pipeline:
+  standalone/modeler:
+    input: openapi-document/identity
+    output-artifact: code-model-v1
+    scope: standalone-modeler
+  standalone/commonmarker:
+    input: modeler
+    output-artifact: code-model-v1
+  standalone/cm/transform:
+    input: commonmarker
+    output-artifact: code-model-v1
+  standalone/cm/emitter:
+    input: transform
+    scope: scope-cm/emitter
+```
+
 #### Polyfills
 
 Support for `additionalProperties: true/false` in `definitions` section
