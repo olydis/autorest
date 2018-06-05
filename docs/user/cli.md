@@ -49,6 +49,7 @@ autorest --input-file=myfile.json --output-folder=./generated/code/ --namespace=
 |`--runtime-id=id`|overrides the platform detection for the dotnet runtime (special case). Refer to the <a href="https://docs.microsoft.com/en-us/dotnet/articles/core/rid-catalog">Runtime Identifier (RID) catalog</a> for more details.|
 
 #### Commonly used Settings
+
 |Option                                                                &nbsp;| Description |
 |------------------|-------------|
 |`--input-file=FILENAME`|Adds the given file to the list of input files for generation process|
